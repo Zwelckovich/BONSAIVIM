@@ -31,6 +31,10 @@ require("lazy").setup({
       },
     },
   },
+  -- Disable luarocks integration (not needed for our plugins)
+  rocks = {
+    enabled = false,
+  },
   ui = {
     border = "rounded", -- BONSAI aesthetic
     backdrop = 100,     -- Darken backdrop

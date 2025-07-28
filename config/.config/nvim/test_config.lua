@@ -28,9 +28,33 @@ end
 function M.run()
   print("=== BONSAI Neovim Configuration Tests ===\n")
   
+  -- Also write to a results file
+  local results_file = io.open("test_results.txt", "w")
+  local function log(msg)
+    print(msg)
+    if results_file then
+      results_file:write(msg .. "\n")
+    end
+  end
+  
   -- Test 1: Check if treesitter is loaded
   test("Treesitter plugin loaded", function()
     assert(pcall(require, "nvim-treesitter"), "Treesitter not loaded")
+  end)
+  
+  -- Test 1b: Check if telescope is loaded
+  test("Telescope plugin loaded", function()
+    assert(pcall(require, "telescope"), "Telescope not loaded")
+  end)
+  
+  -- Test 1c: Check if flash is loaded
+  test("Flash plugin loaded", function()
+    assert(pcall(require, "flash"), "Flash not loaded")
+  end)
+  
+  -- Test 1d: Check if which-key is loaded
+  test("Which-key plugin loaded", function()
+    assert(pcall(require, "which-key"), "Which-key not loaded")
   end)
   
   -- Test 2: Check if treesitter configs are accessible
@@ -70,10 +94,15 @@ function M.run()
   end)
   
   -- Print summary
-  print("\n=== Test Summary ===")
-  print("Passed: " .. results.passed)
-  print("Failed: " .. results.failed)
-  print("Total:  " .. (results.passed + results.failed))
+  log("\n=== Test Summary ===")
+  log("Passed: " .. results.passed)
+  log("Failed: " .. results.failed)
+  log("Total:  " .. (results.passed + results.failed))
+  
+  -- Close results file
+  if results_file then
+    results_file:close()
+  end
   
   -- Exit with appropriate code
   if results.failed > 0 then

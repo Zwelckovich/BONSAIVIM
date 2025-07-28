@@ -23,3 +23,8 @@ config/.cache/
 
 # Logs
 *.log
+
+# Test results
+plugin_test_results.txt
+plugin_test_output.txt
+test_results.txt

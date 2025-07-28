@@ -37,6 +37,37 @@ Added Treesitter for:
 - Navigation shortcuts: `[f`/`]f` for functions, `[[`/`]]` for classes
 - Smart text objects: `af`/`if` (function), `ac`/`ic` (class)
 
+## Phase 3: Navigation & Search (Complete)
+
+Added powerful navigation and search capabilities:
+- **Telescope**: Fuzzy finding with ivy theme and BONSAI colors
+- **Flash**: Lightning-fast character navigation
+- **Which-key**: Interactive keybinding discovery
+
+### What's New in Phase 3
+
+- `lua/plugins/telescope.lua` - Fuzzy finder with fzf algorithm
+- `lua/plugins/flash.lua` - Fast navigation with `s`/`S` keys
+- `lua/plugins/which-key.lua` - Keybind hints with 500ms delay
+
+### Key Navigation Features
+
+- **Telescope** (`<leader>f` group):
+  - `ff` - Find files
+  - `fg` - Live grep
+  - `fb` - Find buffers
+  - `fh` - Find help
+  - `fr` - Recent files
+  - `fw` - Find word under cursor
+  - `f/` - Search in current buffer
+
+- **Flash Navigation**:
+  - `s` - Jump forward to any character
+  - `S` - Jump backward to any character
+  - `<leader>jt` - Flash Treesitter navigation
+
+- **Which-key**: Press `<leader>` and wait 500ms to see available commands
+
 ## Quick Start
 
 1. **Test the configuration**:
@@ -74,13 +105,14 @@ This will check:
 - lazy.nvim is installed
 - Key mappings work
 - Core options are applied
+- All plugins load correctly (Treesitter, Telescope, Flash, Which-key)
 
 ## Next Phases
 
 - ~~Phase 2: Syntax & Understanding (treesitter)~~ ✅ Complete
-- Phase 3: Navigation & Search (telescope, flash)
+- ~~Phase 3: Navigation & Search (telescope, flash, which-key)~~ ✅ Complete
 - Phase 4: Language Intelligence (LSP + Mason & Conform)
-- Phase 5: Code Assistance (Luasnip & Which-key)
+- Phase 5: Code Assistance (Luasnip)
 - Phase 6: Version Control (Gitsigns)
 - Phase 7: UI Enhancement (Lualine & Undotree)
 - Phase 8: Session & File Management (Persistence & Yazi)

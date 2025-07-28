@@ -40,13 +40,13 @@ return {
         "vim",
         "vimdoc",
       },
-      
+
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
-      
+
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
-      
+
       highlight = {
         enable = true,
         -- Disable for large files
@@ -56,14 +56,14 @@ return {
         -- Disable slow treesitter highlight for large files
         additional_vim_regex_highlighting = false,
       },
-      
+
       indent = {
         enable = true,
         disable = function(lang, buf)
           return vim.b[buf].large_file
         end,
       },
-      
+
       -- Enable incremental selection
       incremental_selection = {
         enable = true,
@@ -74,7 +74,7 @@ return {
           node_decremental = "<S-Tab>",
         },
       },
-      
+
       -- Text objects for functions and classes
       textobjects = {
         select = {
