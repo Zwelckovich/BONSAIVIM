@@ -3,8 +3,8 @@
 
 require("lazy").setup({
   spec = {
-    -- Plugins will be added here in future phases
-    -- For now, we keep it empty to ensure a working foundation
+    -- Import all plugins from lua/plugins directory
+    { import = "plugins" },
   },
   defaults = {
     lazy = true,  -- Default all plugins to lazy loading

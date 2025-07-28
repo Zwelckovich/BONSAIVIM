@@ -20,6 +20,23 @@ This phase establishes the core configuration structure:
 
 No plugins are installed yet - this is the pure foundation.
 
+## Phase 2: Syntax & Understanding (Complete)
+
+Added Treesitter for:
+- Syntax highlighting with performance optimizations
+- Code understanding and navigation
+- Text objects for functions and classes
+- Incremental selection
+- Folding based on syntax tree
+- Automatic parser installation for Python, JS/TS, HTML, CSS, Markdown, Lua
+
+### What's New in Phase 2
+
+- `lua/plugins/treesitter.lua` - Complete Treesitter configuration
+- Performance optimization for large files (>1MB)
+- Navigation shortcuts: `[f`/`]f` for functions, `[[`/`]]` for classes
+- Smart text objects: `af`/`if` (function), `ac`/`ic` (class)
+
 ## Quick Start
 
 1. **Test the configuration**:
@@ -60,7 +77,7 @@ This will check:
 
 ## Next Phases
 
-- Phase 2: Syntax & Understanding (treesitter)
+- ~~Phase 2: Syntax & Understanding (treesitter)~~ ✅ Complete
 - Phase 3: Navigation & Search (telescope, flash)
 - Phase 4: Language Intelligence (LSP + Mason & Conform)
 - Phase 5: Code Assistance (Luasnip & Which-key)
