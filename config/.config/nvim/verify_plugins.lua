@@ -20,6 +20,12 @@ if test_plugin("Treesitter", "nvim-treesitter") then passed = passed + 1 else fa
 if test_plugin("Telescope", "telescope") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("Flash", "flash") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("Which-key", "which-key") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Mason", "mason") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Mason-lspconfig", "mason-lspconfig") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("LSPConfig", "lspconfig") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Conform", "conform") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("LuaSnip", "luasnip") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("nvim-cmp", "cmp") then passed = passed + 1 else failed = failed + 1 end
 
 print("\n=== Summary ===")
 print("Passed: " .. passed)

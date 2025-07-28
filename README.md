@@ -68,6 +68,90 @@ Added powerful navigation and search capabilities:
 
 - **Which-key**: Press `<leader>` and wait 500ms to see available commands
 
+## Phase 4: Language Intelligence (Complete)
+
+Added LSP support and code formatting:
+- **Mason**: Automatic LSP server installation and management
+- **LSP**: Language servers for Python (pyright), TypeScript/JavaScript, Tailwind CSS
+- **Conform**: Code formatting with ruff (Python) and prettier (JS/TS/CSS/HTML/Markdown)
+- **Diagnostics**: Errors shown in virtual text, full diagnostics on hover
+
+### What's New in Phase 4
+
+- `lua/plugins/lsp.lua` - Complete LSP configuration with Mason
+- `lua/plugins/conform.lua` - Format on save with 1000ms timeout
+- Automatic LSP server installation via Mason
+- Smart code actions and navigation
+
+### Key LSP Features
+
+- **Code Navigation**:
+  - `gd` - Go to definition
+  - `gi` - Go to implementation  
+  - `gr` - Go to references
+  - `K` - Hover documentation
+
+- **Code Actions** (`<leader>c` group):
+  - `ca` - Code action
+  - `cf` - Code format
+  - `cr` - Code rename
+  - `cd` - Code definition
+  - `ci` - Code implementation
+  - `ch` - Code hover
+  - `cs` - Code signature help
+
+- **Diagnostics** (`<leader>d` group):
+  - `df` - Diagnostics float
+  - `dd` - Diagnostics list
+  - `dn` - Next diagnostic
+  - `dp` - Previous diagnostic
+  - `[d`/`]d` - Navigate diagnostics
+
+- **Formatting**: Automatic format on save with conform.nvim
+  - Python: ruff (replaces black, isort, flake8)
+  - JS/TS/CSS/HTML/Markdown: prettier
+  - Lua: stylua (when available)
+
+## Phase 5: Code Assistance (Complete)
+
+Added snippet support with LuaSnip and completion with nvim-cmp:
+- **LuaSnip**: Advanced snippet engine with multiple format support
+- **nvim-cmp**: Completion framework with LSP integration
+- **Tab Navigation**: Tab to expand/jump forward, Shift-Tab to jump backward
+- **Multiple Formats**: VSCode and SnipMate snippet compatibility
+- **friendly-snippets**: Community-maintained snippet collection
+
+### What's New in Phase 5
+
+- `lua/plugins/luasnip.lua` - Complete snippet configuration
+- `lua/plugins/cmp.lua` - Completion engine with BONSAI styling
+- Integrated nvim-cmp with LSP for better completions
+- Custom snippets for Python and JavaScript
+
+### Key Snippet Features
+
+- **Snippet Expansion**:
+  - `Tab` - Expand snippet or jump to next placeholder
+  - `Shift-Tab` - Jump to previous placeholder
+  - `Ctrl-j`/`Ctrl-k` - Navigate choice nodes in snippets
+
+- **Python Snippets**:
+  - `docstring` - Generate Python docstring with type hints
+  - `deft` - Type-hinted function definition
+  - `main` - if __name__ == "__main__" block
+
+- **JavaScript/React Snippets**:
+  - `arrow` - ES6 arrow function
+  - `rfc` - React functional component
+  - `useState` - React useState hook
+  - `useEffect` - React useEffect hook
+
+- **Completion Sources**:
+  - LSP completions (highest priority)
+  - Snippet completions
+  - Buffer word completions
+  - File path completions
+
 ## Quick Start
 
 1. **Test the configuration**:
@@ -93,9 +177,10 @@ See [USAGE.md](USAGE.md) for all running options.
 
 ## Testing
 
-Run the test script to verify configuration:
+Run the test scripts to verify configuration:
 ```bash
-./test_config.sh
+./test_config.sh          # Basic configuration tests
+./run_all_tests.sh        # Comprehensive test suite
 ```
 
 This will check:
@@ -105,14 +190,16 @@ This will check:
 - lazy.nvim is installed
 - Key mappings work
 - Core options are applied
-- All plugins load correctly (Treesitter, Telescope, Flash, Which-key)
+- All plugins load correctly (Treesitter, Telescope, Flash, Which-key, Mason, LSP, Conform, LuaSnip, nvim-cmp)
+- LSP functionality and formatting work correctly
+- Snippet expansion and completion work correctly
 
 ## Next Phases
 
 - ~~Phase 2: Syntax & Understanding (treesitter)~~ ✅ Complete
 - ~~Phase 3: Navigation & Search (telescope, flash, which-key)~~ ✅ Complete
-- Phase 4: Language Intelligence (LSP + Mason & Conform)
-- Phase 5: Code Assistance (Luasnip)
+- ~~Phase 4: Language Intelligence (LSP + Mason & Conform)~~ ✅ Complete
+- ~~Phase 5: Code Assistance (Luasnip)~~ ✅ Complete
 - Phase 6: Version Control (Gitsigns)
 - Phase 7: UI Enhancement (Lualine & Undotree)
 - Phase 8: Session & File Management (Persistence & Yazi)

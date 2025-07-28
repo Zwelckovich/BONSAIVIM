@@ -83,7 +83,7 @@ return {
         filetypes = { "TelescopePrompt" },
       },
     }, opts)
-    
+
     wk.setup(setup_opts)
 
     -- Register key groups and mappings with explicit leader prefix
@@ -103,38 +103,38 @@ return {
       w = { name = "+window" },
       x = { name = "+execute" },
       y = { name = "+yazi" },
-      
+
       -- Explicitly register mappings from keymaps.lua
       Y = { '"+Y', "Yank line to clipboard" },
       e = { ":Ex<CR>", "Open file explorer" },
-      
+
       -- Window management (as subcommands)
       ["wv"] = { "<C-w>v", "Vertical split" },
       ["ws"] = { "<C-w>s", "Horizontal split" },
       ["wc"] = { "<C-w>c", "Close window" },
       ["wo"] = { "<C-w>o", "Close other windows" },
       ["w="] = { "<C-w>=", "Balance windows" },
-      
-      -- Buffer management  
+
+      -- Buffer management
       ["bd"] = { ":bdelete<CR>", "Delete buffer" },
       ["bn"] = { ":bnext<CR>", "Next buffer" },
       ["bp"] = { ":bprevious<CR>", "Previous buffer" },
       ["bD"] = { ":bdelete!<CR>", "Force delete buffer" },
-      
+
       -- Quit commands
       ["qq"] = { ":qa<CR>", "Quit all" },
       ["qQ"] = { ":qa!<CR>", "Force quit all" },
-      
+
       -- Search/Replace
       ["sc"] = { ":nohlsearch<CR>", "Clear search highlights" },
       ["sw"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace word under cursor" },
-      
+
       -- Toggle settings
       ["tn"] = { ":set relativenumber!<CR>", "Toggle relative numbers" },
       ["tw"] = { ":set wrap!<CR>", "Toggle line wrap" },
       ["ts"] = { ":set spell!<CR>", "Toggle spell check" },
       ["th"] = { ":set hlsearch!<CR>", "Toggle search highlight" },
-      
+
       -- Telescope mappings (from telescope.lua)
       ["ff"] = { "<cmd>Telescope find_files<cr>", "Find files" },
       ["fg"] = { "<cmd>Telescope live_grep<cr>", "Find by grep" },
@@ -183,7 +183,7 @@ return {
       J = { ":m '>+1<CR>gv=gv", "Move selection down" },
       K = { ":m '<-2<CR>gv=gv", "Move selection up" },
     }, { mode = "v" })
-    
+
     -- Visual mode leader mappings
     wk.register({
       d = { '"_d', "Delete without yanking" },
