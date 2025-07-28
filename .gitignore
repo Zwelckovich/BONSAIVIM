@@ -1,0 +1,25 @@
+# BONSAI workflow files
+CLEANUP.md
+BONSAI.md
+GROW.md
+BONSAI_IT_PROCESS.md
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Neovim
+lazy-lock.json
+config/.local/
+config/.cache/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
