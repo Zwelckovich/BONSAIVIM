@@ -46,19 +46,7 @@ return {
       "mason-org/mason-lspconfig.nvim",
     },
     config = function()
-      -- Configure LSP UI
-      local signs = {
-        { name = "DiagnosticSignError", text = "✗" },
-        { name = "DiagnosticSignWarn", text = "⚠" },
-        { name = "DiagnosticSignHint", text = "➤" },
-        { name = "DiagnosticSignInfo", text = "i" }
-      }
-
-      for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-      end
-
-      -- Configure diagnostics
+      -- Configure diagnostics (includes sign configuration)
       vim.diagnostic.config({
         virtual_text = {
           prefix = "●",
@@ -74,7 +62,14 @@ return {
           header = "",
           prefix = "",
         },
-        signs = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "✗",
+            [vim.diagnostic.severity.WARN] = "⚠",
+            [vim.diagnostic.severity.HINT] = "➤",
+            [vim.diagnostic.severity.INFO] = "i",
+          },
+        },
         underline = true,
         update_in_insert = false,  -- Don't update diagnostics in insert mode
         severity_sort = true,

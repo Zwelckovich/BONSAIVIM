@@ -37,167 +37,50 @@ return {
     vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = colors.border_subtle, bg = colors.bg_primary })
     vim.api.nvim_set_hl(0, "WhichKeyValue", { fg = colors.yellow_primary })
 
-    -- Merge opts with our configuration
+    -- Merge opts with our configuration - keep it simple
     local setup_opts = vim.tbl_deep_extend("force", {
-      plugins = {
-        marks = true,
-        registers = true,
-        spelling = {
-          enabled = true,
-          suggestions = 20,
-        },
-        presets = {
-          operators = false,
-          motions = false,
-          text_objects = false,
-          windows = true,
-          nav = true,
-          z = true,
-          g = true,
-        },
-      },
-      -- Use compatible configuration
-      window = {
+      -- Just the essential config
+      win = {
         border = "rounded",
-        position = "bottom",
-        margin = { 1, 0, 1, 0 },
-        padding = { 2, 2, 2, 2 },
-        winblend = 10,
-      },
-      layout = {
-        height = { min = 4, max = 25 },
-        width = { min = 20, max = 50 },
-        spacing = 3,
-        align = "left",
-      },
-      ignore_missing = false,
-      show_help = true,
-      show_keys = true,
-      triggers = "auto",
-      triggers_blacklist = {
-        i = { "j", "k" },
-        v = { "j", "k" },
-      },
-      disable = {
-        buftypes = {},
-        filetypes = { "TelescopePrompt" },
       },
     }, opts)
 
     wk.setup(setup_opts)
 
-    -- Register key groups and mappings with explicit leader prefix
-    wk.register({
-      b = { name = "+buffer" },
-      c = { name = "+code" },
-      d = { name = "+diagnostics" },
-      f = { name = "+find" },
-      g = { name = "+git" },
-      h = { name = "+hunk" },
-      j = { name = "+jump" },
-      m = { name = "+markdown" },
-      p = { name = "+persistence" },
-      q = { name = "+quit" },
-      s = { name = "+search" },
-      t = { name = "+toggle" },
-      w = { name = "+window" },
-      x = { name = "+execute" },
-      y = { name = "+yazi" },
+    -- Register key groups only - mappings are defined in their respective files
+    wk.add({
+      -- Groups
+      { "<leader>b", group = "buffer" },
+      { "<leader>c", group = "code" },
+      { "<leader>d", group = "diagnostics" },
+      { "<leader>f", group = "find" },
+      { "<leader>g", group = "git" },
+      { "<leader>h", group = "hunk" },
+      { "<leader>j", group = "jump" },
+      { "<leader>m", group = "markdown" },
+      { "<leader>p", group = "persistence" },
+      { "<leader>q", group = "quit" },
+      { "<leader>s", group = "search" },
+      { "<leader>t", group = "toggle" },
+      { "<leader>w", group = "window" },
+      { "<leader>x", group = "execute" },
+      { "<leader>y", group = "yazi" },
+    })
 
-      -- Explicitly register mappings from keymaps.lua
-      Y = { '"+Y', "Yank line to clipboard" },
-      e = { ":Ex<CR>", "Open file explorer" },
+    -- Register descriptions for existing mappings (don't duplicate the mappings)
+    -- These mappings are defined in other files
+    wk.add({
+      -- Describe existing navigation mappings
+      { "[f", desc = "Previous function" },
+      { "]f", desc = "Next function" },
+      { "[c", desc = "Previous class" },
+      { "]c", desc = "Next class" },
+      { "[[", desc = "Previous function/class" },
+      { "]]", desc = "Next function/class" },
 
-      -- Window management (as subcommands)
-      ["wv"] = { "<C-w>v", "Vertical split" },
-      ["ws"] = { "<C-w>s", "Horizontal split" },
-      ["wc"] = { "<C-w>c", "Close window" },
-      ["wo"] = { "<C-w>o", "Close other windows" },
-      ["w="] = { "<C-w>=", "Balance windows" },
-
-      -- Buffer management
-      ["bd"] = { ":bdelete<CR>", "Delete buffer" },
-      ["bn"] = { ":bnext<CR>", "Next buffer" },
-      ["bp"] = { ":bprevious<CR>", "Previous buffer" },
-      ["bD"] = { ":bdelete!<CR>", "Force delete buffer" },
-
-      -- Quit commands
-      ["qq"] = { ":qa<CR>", "Quit all" },
-      ["qQ"] = { ":qa!<CR>", "Force quit all" },
-
-      -- Search/Replace
-      ["sc"] = { ":nohlsearch<CR>", "Clear search highlights" },
-      ["sw"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace word under cursor" },
-
-      -- Toggle settings
-      ["tn"] = { ":set relativenumber!<CR>", "Toggle relative numbers" },
-      ["tw"] = { ":set wrap!<CR>", "Toggle line wrap" },
-      ["ts"] = { ":set spell!<CR>", "Toggle spell check" },
-      ["th"] = { ":set hlsearch!<CR>", "Toggle search highlight" },
-
-      -- Telescope mappings (from telescope.lua)
-      ["ff"] = { "<cmd>Telescope find_files<cr>", "Find files" },
-      ["fg"] = { "<cmd>Telescope live_grep<cr>", "Find by grep" },
-      ["fb"] = { "<cmd>Telescope buffers<cr>", "Find buffers" },
-      ["fh"] = { "<cmd>Telescope help_tags<cr>", "Find help" },
-      ["fc"] = { "<cmd>Telescope commands<cr>", "Find commands" },
-      ["fr"] = { "<cmd>Telescope oldfiles<cr>", "Find recent files" },
-      ["f/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find in buffer" },
-    }, { prefix = "<leader>" })
-
-    -- Register specific mappings with descriptions
-    -- These enhance the existing keymaps from keymaps.lua
-    wk.register({
-      -- Normal mode mappings
-      ["<C-h>"] = { "<C-w>h", "Go to left window" },
-      ["<C-j>"] = { "<C-w>j", "Go to lower window" },
-      ["<C-k>"] = { "<C-w>k", "Go to upper window" },
-      ["<C-l>"] = { "<C-w>l", "Go to right window" },
-
-      ["<S-h>"] = { ":bprevious<CR>", "Previous buffer" },
-      ["<S-l>"] = { ":bnext<CR>", "Next buffer" },
-
-      ["[q"] = { ":cprev<CR>", "Previous quickfix" },
-      ["]q"] = { ":cnext<CR>", "Next quickfix" },
-
-      -- Treesitter text objects (from treesitter config)
-      ["[f"] = { "Previous function" },
-      ["]f"] = { "Next function" },
-      ["[c"] = { "Previous class" },
-      ["]c"] = { "Next class" },
-      ["[["] = { "Previous function/class" },
-      ["]]"] = { "Next function/class" },
-
-      -- Flash navigation
-      s = { "Flash forward" },
-      S = { "Flash backward" },
-
-      -- Leader mappings are already defined in keymaps.lua
-      -- We just add group names above
-    }, { mode = "n" })
-
-    -- Visual mode mappings
-    wk.register({
-      ["<"] = { "<gv", "Indent left" },
-      [">"] = { ">gv", "Indent right" },
-      J = { ":m '>+1<CR>gv=gv", "Move selection down" },
-      K = { ":m '<-2<CR>gv=gv", "Move selection up" },
-    }, { mode = "v" })
-
-    -- Visual mode leader mappings
-    wk.register({
-      d = { '"_d', "Delete without yanking" },
-      p = { '"_dP', "Paste without yanking" },
-      y = { '"+y', "Yank to clipboard" },
-    }, { mode = "v", prefix = "<leader>" })
-
-    -- Operator pending mode
-    wk.register({
-      ["af"] = { "@function.outer", "around function" },
-      ["if"] = { "@function.inner", "inside function" },
-      ["ac"] = { "@class.outer", "around class" },
-      ["ic"] = { "@class.inner", "inside class" },
-      ["as"] = { "@scope", "around scope" },
-    }, { mode = "o" })
+      -- Flash navigation descriptions
+      { "s", desc = "Flash forward" },
+      { "S", desc = "Flash backward" },
+    })
   end,
 }
