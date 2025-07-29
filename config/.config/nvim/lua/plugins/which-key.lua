@@ -82,6 +82,7 @@ return {
 			{ "<leader>h", group = "harpoon" },
 			{ "<leader>j", group = "jump" },
 			{ "<leader>m", group = "markdown" },
+			{ "<leader>mp", desc = "Toggle markdown preview" },
 			{ "<leader>p", group = "persistence" },
 			{ "<leader>q", group = "quit" },
 			{ "<leader>s", group = "search" },

@@ -34,6 +34,8 @@ A minimal, purposeful Neovim configuration that embodies BONSAI principles:
 - **gitsigns**: Git integration in the sign column
 - **persistence**: Automatic session management
 - **yazi.nvim**: Terminal file manager integration
+- **nvim-surround**: Efficient text manipulation for quotes, brackets, and tags
+- **nvim-autopairs**: Automatic bracket/quote pairing with context awareness
 
 ## BONSAI-Specific Tooling
 
@@ -198,6 +200,7 @@ Each plugin serves a clear purpose in the BONSAI workflow:
 - **gitsigns**: Git context without leaving the editor, essential for modern development
 - **persistence**: Eliminates repetitive file opening, preserves project context
 - **yazi.nvim**: Fast file navigation when tree-based exploration is needed
+- **nvim-surround**: Streamlines common text manipulation tasks (quotes, brackets, tags)
 
 ## Directory Structure
 
@@ -312,6 +315,23 @@ nvim/
 - Auto-trigger for common patterns (e.g., `def` → function template)
 - Visual placeholder for TM_SELECTED_TEXT
 - No aggressive auto-expansion
+
+### Nvim-surround
+- Efficient manipulation of surrounding characters (quotes, brackets, tags)
+- Minimal keybindings: `ys` (add), `cs` (change), `ds` (delete)
+- Visual mode with `S` to surround selection
+- Aliases for common surrounds: `q` for quotes, `b` for brackets
+- Subtle highlight animation (300ms) for visual feedback
+- Works seamlessly with repeat (`.`) command
+
+### Nvim-autopairs
+- Automatic insertion of closing brackets, quotes, and backticks
+- Treesitter integration for context awareness (disable in comments/strings)
+- nvim-cmp integration for seamless completion compatibility
+- Fast wrap with `<M-e>` to surround existing text
+- Language-specific rules: markdown triple asterisks, HTML tags, docstrings
+- Disable in specific filetypes: TelescopePrompt, vim, command mode
+- Smart behavior: skip over existing pairs, delete pairs together
 
 ## Maintenance
 

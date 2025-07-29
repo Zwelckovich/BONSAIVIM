@@ -106,6 +106,26 @@ if test_plugin("Comment", "Comment") then
 else
 	failed = failed + 1
 end
+if test_plugin("Nvim-surround", "nvim-surround") then
+	passed = passed + 1
+else
+	failed = failed + 1
+end
+if test_plugin("Nvim-autopairs", "nvim-autopairs") then
+	passed = passed + 1
+else
+	failed = failed + 1
+end
+
+-- Test markdown-preview.nvim (command-based plugin)
+if vim.fn.exists(":MarkdownPreview") == 2 then
+	print("✓ Markdown-preview loaded successfully")
+	passed = passed + 1
+else
+	print("✗ Markdown-preview failed to load")
+	failed = failed + 1
+end
+
 -- Special test for undotree (Vimscript plugin with lazy loading)
 -- Force load undotree first since it's lazy loaded on key press
 local lazy = require("lazy")

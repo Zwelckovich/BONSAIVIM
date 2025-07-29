@@ -234,6 +234,7 @@ See [USAGE.md](USAGE.md) for all running options.
 - **✂️ Snippets**: Tab-completable snippets with LuaSnip
 - **📊 Git Integration**: Gitsigns with hunk navigation and inline blame + LazyGit visual interface
 - **⌨️ German Keyboard**: Full support with `ö` → `[`, `ä` → `]`
+- **🔤 Text Manipulation**: nvim-surround for efficient editing of quotes, brackets, and tags
 - **🎯 Minimal Philosophy**: Every plugin has a clear purpose
 
 ## Testing
@@ -309,9 +310,9 @@ Added Git integration with gitsigns.nvim:
   - `tb` - Toggle line blame
   - `td` - Toggle deleted lines
 
-## Configuration Complete! 🎉
+## Configuration Progress
 
-All 10 phases of the BONSAI Neovim configuration are now complete:
+The BONSAI Neovim configuration includes:
 
 1. ✅ **Foundation** - Core structure and settings
 2. ✅ **Syntax & Understanding** - Treesitter integration
@@ -323,6 +324,10 @@ All 10 phases of the BONSAI Neovim configuration are now complete:
 8. ✅ **Session & File Management** - Persistence & Yazi
 9. ✅ **BONSAI Colorscheme & Final Polish** - Custom colors & optimizations
 10. ✅ **Advanced Search & Replace** - nvim-spectre for project-wide operations
+11. ✅ **Terminal Integration** - Toggleterm with custom terminals
+12. ✅ **Visual Git Interface** - LazyGit integration
+13. ✅ **Smart Commenting** - Comment.nvim with treesitter support
+14. ✅ **Text Manipulation** - nvim-surround for efficient editing
 
 Your Neovim is now a fully-featured, minimal, and blazing-fast development environment!
 
@@ -523,6 +528,106 @@ Added intelligent language-aware commenting:
    - `gcO` - Add comment on line above
    - `gcA` - Add comment at end of line
 5. **Block Comments**: Use `gb` instead of `gc` for block-style comments
+
+## Phase 14: Text Manipulation - nvim-surround (Complete)
+
+Added efficient text manipulation for quotes, brackets, and tags:
+
+### What's New - nvim-surround
+- `lua/plugins/surround.lua` - Surround text objects with minimal keybindings
+- Features:
+  - **Add Surrounds**: `ys{motion}{char}` to surround text (e.g., `ysiw"` for quotes around word)
+  - **Change Surrounds**: `cs{old}{new}` to change existing surrounds (e.g., `cs"'` to change double to single quotes)
+  - **Delete Surrounds**: `ds{char}` to delete surrounds (e.g., `ds"` to remove quotes)
+  - **Visual Mode**: Select text and press `S{char}` to surround selection
+  - **Line-wise Operations**: `yss{char}` for current line, `yS{motion}{char}` for line-wise with motion
+- Convenient Aliases:
+  - `a` → angle brackets `<>`
+  - `b` → parentheses `()`
+  - `B` → curly brackets `{}`
+  - `r` → square brackets `[]`
+  - `q` → any quote type (`"`, `'`, `` ` ``)
+- BONSAI Integration:
+  - Minimal 300ms highlight animation
+  - Works with dot repeat (`.`) command
+  - Cursor positioning optimized for workflow
+
+### Testing nvim-surround
+1. **Add Surrounds**:
+   - Place cursor on word, type `ysiw"` to add quotes
+   - Type `ys$)` to surround to end of line with parentheses
+   - Type `yss{` to surround entire line with curly brackets
+2. **Change Surrounds**:
+   - With cursor inside quotes, type `cs"'` to change to single quotes
+   - Type `cs{[` to change curly to square brackets
+3. **Delete Surrounds**:
+   - With cursor inside quotes, type `ds"` to remove them
+   - Type `dsb` to remove surrounding parentheses
+4. **Visual Mode**:
+   - Select text, press `S"` to surround with quotes
+   - Select multiple lines, press `gS{` to surround with brackets on separate lines
+
+## Phase 15: Auto-pairs - nvim-autopairs (Complete)
+
+Added intelligent automatic bracket and quote pairing:
+
+### What's New - nvim-autopairs
+- `lua/plugins/autopairs.lua` - Smart bracket/quote pairing with context awareness
+
+**Features**:
+- **Smart Pairing**: Automatically inserts closing brackets, quotes, and backticks
+- **Treesitter Integration**: Context-aware - won't pair inside comments or strings
+- **nvim-cmp Integration**: Works seamlessly with completion system
+- **Fast Wrap**: Press `<M-e>` (Alt-e) to wrap existing text with pairs
+- **Custom Rules**: Triple asterisks for markdown, HTML tag completion, docstrings
+- **Visual Block Support**: Works in visual block mode for multi-cursor-like editing
+
+### Autopairs Behavior
+
+**Basic Pairing**:
+- Type `(`, `[`, `{`, `'`, `"`, or `` ` `` to automatically insert closing pair
+- Type closing character to skip over existing pair
+- Delete opening character to remove both opening and closing
+
+**Fast Wrap** (`<M-e>`):
+1. With cursor on or after text, press `<M-e>`
+2. Choose wrap character (e.g., `(`, `[`, `"`)
+3. Text is wrapped: `word` → `(word)`
+
+**Language-Specific**:
+- **Markdown**: `***` for bold italic, `` ``` `` for code blocks
+- **Python/JavaScript**: `"""` or `'''` for docstrings
+- **HTML/JSX**: `<` auto-completes to `>`, self-closing tags with `/>`
+
+**Disabled In**:
+- TelescopePrompt (fuzzy finder)
+- Vim command mode
+- Macro recording
+- Replace mode
+
+## Phase 16: Markdown Preview - markdown-preview.nvim (Complete)
+
+Live markdown preview with BONSAI-styled dark theme:
+
+**Features**:
+- **Live Preview**: Real-time updates as you type
+- **BONSAI Theme**: Custom dark CSS matching the editor theme
+- **Synchronized Scrolling**: Preview follows your cursor position
+- **Extended Syntax Support**:
+  - Mermaid diagrams
+  - KaTeX mathematical expressions
+  - Task lists
+  - Tables and code highlighting
+- **Browser Integration**: Reuses existing preview tabs
+
+**Usage**:
+- `<leader>mp` - Toggle markdown preview
+
+**Configuration**:
+- Auto-close preview when leaving markdown buffer
+- Only available for markdown files
+- Uses system default browser
+- Custom BONSAI color scheme for all elements
 
 ## 🔧 Troubleshooting
 
@@ -734,6 +839,7 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | Key | Description |
 |-----|-------------|
 | `<leader>u` | Toggle undotree |
+| `<leader>mp` | Toggle markdown preview |
 | `<leader>jt` | Flash Treesitter |
 | `<C-\>` | Toggle terminal (works in all modes) |
 
@@ -753,6 +859,26 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `af` / `if` | Around/inside function |
 | `ac` / `ic` | Around/inside class |
 | `aa` / `ia` | Around/inside parameter |
+
+### Text Manipulation (nvim-surround)
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `ys{motion}{char}` | Normal | Add surround (e.g., `ysiw"` for quotes around word) |
+| `yss{char}` | Normal | Surround current line |
+| `yS{motion}{char}` | Normal | Add surround on new lines |
+| `ySS{char}` | Normal | Surround current line on new lines |
+| `cs{old}{new}` | Normal | Change surround (e.g., `cs"'`) |
+| `ds{char}` | Normal | Delete surround (e.g., `ds"`) |
+| `S{char}` | Visual | Surround selection |
+| `gS{char}` | Visual | Surround selection on new lines |
+
+**Common Aliases:**
+- `a` = `<>` (angle brackets)
+- `b` = `()` (parentheses)
+- `B` = `{}` (curly brackets)
+- `r` = `[]` (square brackets)
+- `q` = `"'`` ` ``` (any quote type)
 
 ## 🌱 Living with BONSAI
 

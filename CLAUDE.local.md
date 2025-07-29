@@ -128,3 +128,11 @@
 - **Solution**: Removed toggleterm's lazygit integration in favor of dedicated lazygit.nvim plugin
 - **Benefits**: Better gitsigns integration, proper window configuration, dedicated keymaps
 - **Configuration**: 90% floating window size as per BONSAI concept.md requirements
+
+### Nvim-autopairs Custom Rules
+- **Date**: 2025-07-29
+- **Discovery**: Custom rules added via add_rules() don't appear in get_rules() output
+- **Testing**: get_rules() returns empty array even with custom rules configured
+- **Behavior**: Custom rules still function correctly despite not appearing in get_rules()
+- **Solution**: Test for get_rules function existence rather than checking rule contents
+- **Takeaway**: Internal implementation details may differ from expected behavior
