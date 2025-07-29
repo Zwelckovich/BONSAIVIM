@@ -43,13 +43,32 @@ return {
 
     telescope.setup({
       defaults = {
-        -- Ivy theme for compact, bottom-aligned picker
-        layout_strategy = "bottom_pane",
+        -- Floating window layout (like yazi) with 90% dimensions
+        layout_strategy = "flex",
         layout_config = {
-          height = 0.35,
-          prompt_position = "bottom",
+          width = 0.9,
+          height = 0.9,
+          prompt_position = "top",
+          flex = {
+            flip_columns = 120,  -- Switch to horizontal layout on wider windows
+          },
+          horizontal = {
+            preview_width = 0.55,
+            preview_cutoff = 120,
+          },
+          vertical = {
+            preview_height = 0.5,
+            preview_cutoff = 40,
+          },
         },
         sorting_strategy = "ascending",
+        winblend = 0,  -- No transparency
+        border = true,
+        borderchars = {
+          prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+          results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        },
 
         -- UI elements
         prompt_prefix = "  ",
@@ -108,6 +127,13 @@ return {
             i = {
               ["<C-d>"] = actions.delete_buffer,
             },
+          },
+        },
+        -- Use ivy theme (bottom pane) for current buffer search
+        current_buffer_fuzzy_find = {
+          theme = "ivy",
+          layout_config = {
+            height = 0.4,
           },
         },
       },

@@ -29,3 +29,9 @@ plugin_test_results.txt
 plugin_test_output.txt
 test_results.txt
 lsp_test_results.txt
+
+# Test documentation and temporary files
+TELESCOPE_LAYOUT.md
+test_ruff.py
+test_ruff_manual.sh
+test_ruff_diagnostic.vim

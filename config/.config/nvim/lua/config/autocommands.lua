@@ -5,6 +5,9 @@ local api = vim.api
 local augroup = api.nvim_create_augroup
 local autocmd = api.nvim_create_autocmd
 
+-- Load diagnostic utilities
+require("config.diagnostic-utils")
+
 -- BONSAI Performance Group
 local perf_group = augroup("BonsaiPerformance", { clear = true })
 

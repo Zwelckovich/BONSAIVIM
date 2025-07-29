@@ -219,6 +219,8 @@ See [USAGE.md](USAGE.md) for all running options.
 - **🎨 BONSAI Colorscheme**: Custom dark zen color palette with semantic highlighting
 - **📝 Complete Language Support**: LSP for Python, JavaScript/TypeScript, Tailwind CSS, HTML, Markdown
 - **🔍 Powerful Navigation**: Telescope fuzzy finder, Flash jump-to-char, Undotree visualization
+- **🎯 Quick File Access**: Harpoon for instant navigation to frequently used files
+- **🗂️ Buffer Tabs**: Visual buffer tabs like browser tabs with bufferline
 - **💾 Smart Sessions**: Auto-save and restore your workspace
 - **📁 File Manager**: Integrated yazi terminal file manager
 - **🔧 Auto-formatting**: Format on save with ruff (Python) and prettier (JS/TS/CSS/HTML)
@@ -261,7 +263,7 @@ Run the comprehensive test suite to verify your installation:
 Added Git integration with gitsigns.nvim:
 - **Sign Column**: Subtle indicators for additions, deletions, and modifications
 - **Hunk Navigation**: `[c`/`]c` to navigate between changes
-- **Hunk Operations**: Stage, reset, preview hunks under `<leader>h`
+- **Hunk Operations**: Stage, reset, preview hunks under `<leader>gh`
 - **Line Blame**: Current line blame with muted colors (toggle with `<leader>tb`)
 - **BONSAI Colors**: Git signs use semantic colors that don't distract from code
 
@@ -277,17 +279,18 @@ Added Git integration with gitsigns.nvim:
   - `[c` - Previous git hunk
   - `]c` - Next git hunk
 
-- **Hunk Operations** (`<leader>h` prefix):
-  - `hs` - Stage hunk
-  - `hr` - Reset hunk
-  - `hS` - Stage buffer
-  - `hu` - Undo stage hunk
-  - `hR` - Reset buffer
-  - `hp` - Preview hunk
-  - `hb` - Blame line
-  - `hB` - Blame line (full commit)
-  - `hd` - Diff this
-  - `hD` - Diff this ~
+- **Hunk Operations** (`<leader>gh` prefix):
+  - `ghs` - Stage hunk
+  - `ghr` - Reset hunk
+  - `ghS` - Stage buffer
+  - `ghu` - Undo stage hunk
+  - `ghR` - Reset buffer
+  - `ghp` - Preview hunk
+  - `ghb` - Blame line
+  - `ghd` - Diff this
+  - `ghD` - Diff this ~
+  - `ghn` - Next hunk
+  - `ghN` - Previous hunk
 
 - **Toggle Features** (`<leader>t` prefix):
   - `tb` - Toggle line blame
@@ -295,17 +298,18 @@ Added Git integration with gitsigns.nvim:
 
 ## Configuration Complete! 🎉
 
-All 9 phases of the BONSAI Neovim configuration are now complete:
+All 10 phases of the BONSAI Neovim configuration are now complete:
 
 1. ✅ **Foundation** - Core structure and settings
 2. ✅ **Syntax & Understanding** - Treesitter integration
-3. ✅ **Navigation & Search** - Telescope, Flash, Which-key
+3. ✅ **Navigation & Search** - Telescope, Flash, Which-key, Harpoon
 4. ✅ **Language Intelligence** - LSP with Mason & Conform
 5. ✅ **Code Assistance** - LuaSnip and nvim-cmp
 6. ✅ **Version Control** - Gitsigns integration
-7. ✅ **UI Enhancement** - Lualine statusline & Undotree
+7. ✅ **UI Enhancement** - Lualine statusline, Undotree & Bufferline tabs
 8. ✅ **Session & File Management** - Persistence & Yazi
 9. ✅ **BONSAI Colorscheme & Final Polish** - Custom colors & optimizations
+10. ✅ **Advanced Search & Replace** - nvim-spectre for project-wide operations
 
 Your Neovim is now a fully-featured, minimal, and blazing-fast development environment!
 
@@ -330,9 +334,22 @@ Added a minimal, BONSAI-themed statusline:
   - Search count
   - File type
   - Progress and location
-- No powerline symbols - clean, flat design
-- Global statusline for cleaner appearance
-- Proper integration with fugitive, quickfix, man pages, and lazy.nvim
+
+### What's New - Bufferline
+
+- `lua/plugins/bufferline.lua` - Visual buffer tabs like browser tabs
+- Browser-style tab interface for open buffers:
+  - Shows all open files as tabs at the top
+  - Active tab highlighted with BONSAI green accent
+  - Modified buffers show ● indicator in yellow
+  - Diagnostic counts (errors/warnings) in each tab
+  - Click tabs to switch buffers (mouse support)
+- Enhanced buffer management:
+  - `<leader>1-9` - Jump directly to buffers 1-9
+  - `<leader>bp` - Interactive buffer picker
+  - `<leader>bc` - Pick buffer to close
+  - `<leader>bo` - Close all other buffers
+  - `<A-h>/<A-l>` - Move tabs left/right to reorder
 
 ### Testing Lualine
 
@@ -428,6 +445,46 @@ Added the custom BONSAI colorscheme and performance optimizations:
 - **Large File Support**: Instant loading for files up to 10MB
 - **Memory Efficient**: Disables heavy features when not needed
 
+## Phase 10: Advanced Search & Replace - nvim-spectre (Complete)
+
+Added powerful project-wide search and replace functionality:
+
+### What's New - nvim-spectre
+
+- `lua/plugins/spectre.lua` - Advanced search and replace with live preview
+- Features:
+  - **Project-wide Search**: Search across entire codebase with ripgrep
+  - **Live Preview**: See replacements before applying them
+  - **Selective Replace**: Toggle individual occurrences on/off
+  - **File Filtering**: Search within specific files or directories
+  - **Regex Support**: Full regular expression support for complex patterns
+  - **Multiple Replace Engines**: sed and oxi support
+- BONSAI Integration:
+  - Custom highlight colors matching the BONSAI theme
+  - Keybindings under `<leader>s` for consistency
+  - Minimal UI that doesn't distract from content
+  - Fast performance with ripgrep backend
+
+### Testing nvim-spectre
+
+1. **Basic Search**: Press `<leader>ss` to open search panel
+2. **Search Current Word**: Press `<leader>sw` on any word
+3. **File-specific Search**: Press `<leader>sp` to search in current file only
+4. **Replace Workflow**:
+   - Enter search pattern
+   - Enter replacement text
+   - Use `dd` to toggle specific occurrences
+   - Press `<leader>R` to replace all or `<leader>rc` for current line
+
+### Spectre Panel Navigation
+
+- `j/k` - Navigate through results
+- `dd` - Toggle line inclusion
+- `<cr>` - Jump to file location
+- `<leader>q` - Send results to quickfix
+- `ti` - Toggle case sensitivity
+- `th` - Toggle hidden files
+
 ## 📚 Complete Keybinding Reference
 
 ### Core Mappings
@@ -495,27 +552,53 @@ Added the custom BONSAI colorscheme and performance optimizations:
 | `gd` | Git diff |
 | `gc` | Git commits |
 
-#### `<leader>h` - Git Hunks (Gitsigns)
+#### `<leader>gh` - Git Hunks (Gitsigns)
 | Key | Description |
 |-----|-------------|
-| `hs` | Stage hunk |
-| `hr` | Reset hunk |
-| `hS` | Stage buffer |
-| `hu` | Undo stage hunk |
-| `hR` | Reset buffer |
-| `hp` | Preview hunk |
-| `hb` | Blame line |
-| `hB` | Blame line (full) |
-| `hd` | Diff this |
-| `hD` | Diff this ~ |
+| `ghs` | Stage hunk |
+| `ghr` | Reset hunk |
+| `ghS` | Stage buffer |
+| `ghu` | Undo stage hunk |
+| `ghR` | Reset buffer |
+| `ghp` | Preview hunk |
+| `ghb` | Blame line |
+| `ghd` | Diff this |
+| `ghD` | Diff this ~ |
+| `ghn` | Next hunk |
+| `ghN` | Previous hunk |
 
 #### `<leader>b` - Buffers
 | Key | Description |
 |-----|-------------|
 | `bd` | Buffer delete |
-| `bn` | Buffer next |
-| `bp` | Buffer previous |
 | `bD` | Buffer force delete |
+| `bp` | Pick buffer (interactive selection) |
+| `bc` | Pick buffer to close |
+| `bh` | Close buffers to the left |
+| `bl` | Close buffers to the right |
+| `bo` | Close other buffers |
+| `<S-h>` | Previous buffer |
+| `<S-l>` | Next buffer |
+| `<A-h>` | Move buffer left (reorder) |
+| `<A-l>` | Move buffer right (reorder) |
+
+#### `<leader>h` - Harpoon (Quick File Navigation)
+| Key | Description |
+|-----|-------------|
+| `hh` | Harpoon menu |
+| `ha` | Add current file to harpoon |
+| `hr` | Remove current file from harpoon |
+| `hc` | Clear all harpoon marks |
+| `hn` | Next harpoon file |
+| `hp` | Previous harpoon file |
+| `ht` | Harpoon telescope picker |
+| `h1-9` | Attach current file to harpoon position 1-9 |
+| `<leader>1-9` | Jump to harpoon file 1-9 |
+
+**Alternative quick access:**
+- `<C-h>` - Harpoon file 1
+- `<C-t>` - Harpoon file 2  
+- `<C-n>` - Harpoon file 3
 
 #### `<leader>w` - Windows
 | Key | Description |
@@ -535,13 +618,27 @@ Added the custom BONSAI colorscheme and performance optimizations:
 | `th` | Toggle highlight search |
 | `tb` | Toggle git blame |
 | `td` | Toggle deleted lines |
+| `tv` | Toggle diagnostics virtual text (on/off) |
+| `tV` | Cycle diagnostic modes (Hidden → Errors only → Warnings+ → All) |
+| `tD` | Toggle all diagnostics (completely disable/enable) |
 
-#### `<leader>s` - Search
+#### `<leader>s` - Search & Replace (Spectre)
 | Key | Description |
 |-----|-------------|
-| `sr` | Search and replace |
-| `sw` | Search word |
+| `ss` | Open search panel (Spectre) |
+| `sw` | Search word under cursor (Spectre) |
+| `sp` | Search in current file (Spectre) |
+| `sr` | Search and replace (Spectre) |
 | `sc` | Search clear highlight |
+
+**Spectre Panel Commands:**
+- `dd` - Toggle line from search
+- `<cr>` - Go to file
+- `<leader>q` - Send all to quickfix
+- `<leader>R` - Replace all
+- `<leader>rc` - Replace current line
+- `ti` - Toggle ignore case
+- `th` - Toggle hidden files
 
 #### `<leader>p` - Persistence/Session
 | Key | Description |

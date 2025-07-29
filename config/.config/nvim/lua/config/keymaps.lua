@@ -79,6 +79,27 @@ map("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrap" })
 map("n", "<leader>ts", ":set spell!<CR>", { desc = "Toggle spell check" })
 map("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle search highlight" })
 
+-- Toggle diagnostics virtual text (inline diagnostics)
+map("n", "<leader>tv", function()
+  local current_config = vim.diagnostic.config()
+  local is_enabled = current_config.virtual_text ~= false
+  
+  if is_enabled then
+    vim.diagnostic.config({ virtual_text = false })
+    vim.notify("Diagnostics: Virtual text disabled", vim.log.levels.INFO)
+  else
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = "●",
+        source = "always",
+        spacing = 4,
+        severity = { min = vim.diagnostic.severity.HINT },
+      }
+    })
+    vim.notify("Diagnostics: Virtual text enabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle diagnostics virtual text" })
+
 -- Quick save
 map("n", "<C-s>", ":w<CR>", { desc = "Save file" })
 map({ "i", "v" }, "<C-s>", "<ESC>:w<CR>", { desc = "Save file" })
@@ -98,3 +119,57 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", s
 map("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
 
 -- File explorer: use <leader>yy for yazi (netrw is disabled)
+
+-- Additional diagnostic toggles
+map("n", "<leader>tV", function()
+  -- Cycle through diagnostic display modes
+  local modes = {
+    { virtual_text = false, desc = "Diagnostics: Hidden" },
+    { virtual_text = { severity = vim.diagnostic.severity.ERROR }, desc = "Diagnostics: Errors only" },
+    { virtual_text = { severity = { min = vim.diagnostic.severity.WARN } }, desc = "Diagnostics: Warnings and above" },
+    { virtual_text = { severity = { min = vim.diagnostic.severity.HINT } }, desc = "Diagnostics: All severities" },
+  }
+  
+  -- Get current mode
+  local current = vim.diagnostic.config().virtual_text
+  local current_index = 1
+  
+  if current == false then
+    current_index = 1
+  elseif current and current.severity then
+    if current.severity == vim.diagnostic.severity.ERROR then
+      current_index = 2
+    elseif current.severity and current.severity.min == vim.diagnostic.severity.WARN then
+      current_index = 3
+    else
+      current_index = 4
+    end
+  else
+    current_index = 4
+  end
+  
+  -- Cycle to next mode
+  local next_index = (current_index % #modes) + 1
+  local next_mode = modes[next_index]
+  
+  -- Apply the configuration
+  if next_mode.virtual_text then
+    next_mode.virtual_text.prefix = "●"
+    next_mode.virtual_text.source = "always"
+    next_mode.virtual_text.spacing = 4
+  end
+  
+  vim.diagnostic.config({ virtual_text = next_mode.virtual_text })
+  vim.notify(next_mode.desc, vim.log.levels.INFO)
+end, { desc = "Cycle diagnostic display modes" })
+
+-- Toggle all diagnostics (not just virtual text)
+map("n", "<leader>tD", function()
+  if vim.diagnostic.is_enabled() then
+    vim.diagnostic.enable(false)
+    vim.notify("Diagnostics: Completely disabled", vim.log.levels.INFO)
+  else
+    vim.diagnostic.enable(true)
+    vim.notify("Diagnostics: Enabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle all diagnostics" })

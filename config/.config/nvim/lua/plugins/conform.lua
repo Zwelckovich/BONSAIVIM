@@ -35,14 +35,37 @@ return {
         markdown = { "prettier" },
         ["markdown.mdx"] = { "prettier" },
         lua = { "stylua" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
       },
 
       -- Format on save configuration
-      format_on_save = {
-        -- Enable format on save with timeout
-        timeout_ms = 1000,
-        lsp_fallback = true,  -- Use LSP formatting if no formatter available
-      },
+      format_on_save = function(bufnr)
+        -- Get the filetype
+        local ft = vim.bo[bufnr].filetype
+        
+        -- For shell scripts, run our custom comment aligner after formatting
+        if ft == "sh" or ft == "bash" then
+          -- Run normal formatters first
+          require("conform").format({
+            bufnr = bufnr,
+            timeout_ms = 1000,
+            lsp_fallback = true,
+          })
+          -- Then align comments
+          local ok, aligner = pcall(require, "bonsai.align-comments")
+          if ok then
+            aligner.align_bash_comments()
+          end
+          return false  -- Don't run format again
+        end
+        
+        -- For other files, use default behavior
+        return {
+          timeout_ms = 1000,
+          lsp_fallback = true,
+        }
+      end,
 
       -- Format after save (async) - disabled by default
       format_after_save = nil,
@@ -127,6 +150,20 @@ return {
             "stylua.toml",
             ".stylua.toml",
           }),
+        },
+        shfmt = {
+          -- Shell script formatter
+          command = "shfmt",
+          args = {
+            "-i", "2",     -- Use 2 spaces for indentation
+            "-bn",         -- Binary operators at start of line
+            "-ci",         -- Indent switch cases
+            "-sr",         -- Keep column alignment paddings
+            "-kp",         -- Keep column alignment for pipes
+            "-filename", "$FILENAME",
+            "-",
+          },
+          stdin = true,
         },
       },
 

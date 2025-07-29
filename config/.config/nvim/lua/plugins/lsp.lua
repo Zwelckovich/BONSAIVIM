@@ -50,15 +50,18 @@ return {
       vim.diagnostic.config({
         virtual_text = {
           prefix = "●",
-          source = "if_many",  -- Show source if multiple sources
+          source = "always",  -- Always show diagnostic source  -- Show source if multiple sources
           spacing = 4,
-          severity = vim.diagnostic.severity.ERROR,  -- Only show errors in virtual text
+          -- Show all severities or adjust as needed:
+          -- severity = vim.diagnostic.severity.ERROR,  -- Only errors
+          -- severity = { min = vim.diagnostic.severity.WARN },  -- WARN and above
+          severity = { min = vim.diagnostic.severity.HINT },  -- All diagnostics (HINT, INFO, WARN, ERROR)
         },
         float = {
           focusable = false,
           style = "minimal",
           border = "rounded",
-          source = "if_many",
+          source = "always",  -- Always show diagnostic source
           header = "",
           prefix = "",
         },

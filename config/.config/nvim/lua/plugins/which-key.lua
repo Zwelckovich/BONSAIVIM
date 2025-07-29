@@ -70,7 +70,8 @@ return {
       { "<leader>cl", desc = "List workspace folders (LSP required)" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
-      { "<leader>h", group = "hunk" },
+      { "<leader>gh", group = "git hunks" },
+      { "<leader>h", group = "harpoon" },
       { "<leader>j", group = "jump" },
       { "<leader>m", group = "markdown" },
       { "<leader>p", group = "persistence" },
@@ -99,6 +100,40 @@ return {
       
       -- Undotree toggle (mapping defined in undotree.lua)
       { "<leader>u", desc = "Toggle undotree" },
+      
+      -- Diagnostic toggles (mappings defined in keymaps.lua)
+      { "<leader>tv", desc = "Toggle diagnostics virtual text" },
+      { "<leader>tV", desc = "Cycle diagnostic display modes" },
+      { "<leader>tD", desc = "Toggle all diagnostics" },
+      
+      -- Buffer management (mappings defined in bufferline.lua)
+      { "<leader>bp", desc = "Pick buffer (interactive)" },
+      { "<leader>bc", desc = "Pick buffer to close" },
+      { "<leader>bh", desc = "Close buffers to the left" },
+      { "<leader>bl", desc = "Close buffers to the right" },
+      { "<leader>bo", desc = "Close other buffers" },
+      
+      -- Harpoon quick navigation (mappings defined in harpoon.lua)
+      { "<leader>1", desc = "Harpoon file 1" },
+      { "<leader>2", desc = "Harpoon file 2" },
+      { "<leader>3", desc = "Harpoon file 3" },
+      { "<leader>4", desc = "Harpoon file 4" },
+      { "<leader>5", desc = "Harpoon file 5" },
+      { "<leader>6", desc = "Harpoon file 6" },
+      { "<leader>7", desc = "Harpoon file 7" },
+      { "<leader>8", desc = "Harpoon file 8" },
+      { "<leader>9", desc = "Harpoon file 9" },
+      
+      -- Harpoon attach to specific position (mappings defined in harpoon.lua)
+      { "<leader>h1", desc = "Attach to harpoon 1" },
+      { "<leader>h2", desc = "Attach to harpoon 2" },
+      { "<leader>h3", desc = "Attach to harpoon 3" },
+      { "<leader>h4", desc = "Attach to harpoon 4" },
+      { "<leader>h5", desc = "Attach to harpoon 5" },
+      { "<leader>h6", desc = "Attach to harpoon 6" },
+      { "<leader>h7", desc = "Attach to harpoon 7" },
+      { "<leader>h8", desc = "Attach to harpoon 8" },
+      { "<leader>h9", desc = "Attach to harpoon 9" },
       
       -- Lazy plugin manager
       { "<leader>L", "<cmd>Lazy<cr>", desc = "Open Lazy plugin manager" },

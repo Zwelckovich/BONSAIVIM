@@ -11,6 +11,9 @@ opt.redrawtime = 1500         -- Prevent hanging on complex files
 opt.lazyredraw = true         -- Don't redraw during macros
 opt.synmaxcol = 240           -- Limit syntax highlighting for long lines
 
+-- Enable filetype detection (REQUIRED for conform.nvim and syntax highlighting)
+vim.cmd([[filetype plugin indent on]])
+
 -- Essential editor behavior
 opt.number = true             -- Show line numbers
 opt.relativenumber = true     -- Relative line numbers for easy jumping
