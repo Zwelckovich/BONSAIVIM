@@ -97,5 +97,4 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", s
 -- Replace word under cursor
 map("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
 
--- Open netrw (temporary until yazi is configured)
-map("n", "<leader>e", ":Ex<CR>", { desc = "Open file explorer" })
+-- File explorer: use <leader>yy for yazi (netrw is disabled)

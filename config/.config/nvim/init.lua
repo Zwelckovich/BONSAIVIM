@@ -20,6 +20,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load core configuration in order
-require("config.options")  -- Neovim options must come first
-require("config.lazy")     -- Plugin manager setup
-require("config.keymaps")  -- Key mappings after plugins load
+require("config.options")    -- Neovim options must come first
+require("config.lazy")       -- Plugin manager setup
+require("config.keymaps")    -- Key mappings after plugins load
+require("config.autocommands") -- Autocommands and performance optimizations

@@ -71,6 +71,13 @@
 - **Solution**: Integrated cmp_nvim_lsp.default_capabilities() in LSP config
 - **Benefit**: Enhanced completion experience with snippet support
 
+### Undotree Plugin
+- **Date**: 2025-07-29
+- **Discovery**: mbbill/undotree doesn't expose a Lua module (pure Vimscript plugin)
+- **Testing**: Plugin verification must check command existence, not require module
+- **Solution**: Test for :UndotreeToggle command and vim.g settings
+- **Configuration**: Uses vim.g.undotree_* settings for all configuration
+
 ### Which-Key v3 Configuration
 - **Date**: 2025-07-29
 - **Discovery**: which-key.nvim v3 renamed 'window' option to 'win'
@@ -85,3 +92,31 @@
 - **Conflict**: [c/]c was mapped for both class navigation (treesitter) and hunk navigation (gitsigns)
 - **Solution**: Changed treesitter to use [[/]] for class navigation (matches concept.md)
 - **Result**: Both plugins can coexist without keymap conflicts
+
+### Lualine Configuration
+- **Date**: 2025-07-29
+- **Discovery**: Lualine doesn't automatically set statusline in headless mode
+- **Reason**: Requires UI event triggers for full initialization
+- **Testing**: Module loads successfully but config application needs UI context
+- **Solution**: Test module loading and config presence, visual testing requires manual verification
+
+### Undotree Lazy Loading
+- **Date**: 2025-07-29
+- **Discovery**: Undotree is lazy loaded on key press, not on startup
+- **Testing**: Must force load with lazy.load() before checking vim.fn.exists()
+- **Solution**: Updated verify_plugins.lua to force load undotree before testing
+- **Configuration**: All settings (window layout, split width, etc.) apply correctly after loading
+
+### Yazi.nvim Plugin
+- **Date**: 2025-07-29
+- **Discovery**: yazi.nvim is a simple command provider, not a complex plugin
+- **Error**: "attempt to call field 'setup' (a nil value)"
+- **Solution**: No setup() function needed - just provides :Yazi command
+- **Configuration**: Minimal config with only keymaps, no opts or setup required
+
+### Persistence.nvim Auto-Restore
+- **Date**: 2025-07-29
+- **Discovery**: Session auto-restore only works when nvim opened without arguments
+- **Implementation**: Check vim.fn.argc(-1) == 0 before restoring
+- **Location**: Sessions stored in stdpath("data") .. "/sessions/"
+- **Exclusions**: Successfully excludes help, quickfix, terminal, and temporary buffers

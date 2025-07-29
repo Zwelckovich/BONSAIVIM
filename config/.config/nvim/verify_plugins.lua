@@ -27,6 +27,23 @@ if test_plugin("Conform", "conform") then passed = passed + 1 else failed = fail
 if test_plugin("LuaSnip", "luasnip") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("nvim-cmp", "cmp") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("Gitsigns", "gitsigns") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Lualine", "lualine") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Persistence", "persistence") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Yazi", "yazi") then passed = passed + 1 else failed = failed + 1 end
+-- Special test for undotree (Vimscript plugin with lazy loading)
+-- Force load undotree first since it's lazy loaded on key press
+local lazy = require("lazy")
+lazy.load({plugins = {"undotree"}})
+vim.wait(500)
+
+local undotree_ok = vim.fn.exists(":UndotreeToggle") == 2
+if undotree_ok then
+  print("✓ Undotree loaded successfully")
+  passed = passed + 1
+else
+  print("✗ Undotree failed to load: command not found")
+  failed = failed + 1
+end
 
 print("\n=== Summary ===")
 print("Passed: " .. passed)

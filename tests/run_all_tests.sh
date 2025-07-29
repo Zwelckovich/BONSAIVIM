@@ -47,6 +47,22 @@ if [ -f "tests/run_snippet_tests.sh" ]; then
     run_test_suite "Snippet Tests" "tests/run_snippet_tests.sh"
 fi
 
+if [ -f "tests/run_gitsigns_tests.sh" ]; then
+    run_test_suite "Gitsigns Tests" "tests/run_gitsigns_tests.sh"
+fi
+
+if [ -f "tests/run_phase7_tests.sh" ]; then
+    run_test_suite "Phase 7: Lualine & Undotree Tests" "tests/run_phase7_tests.sh"
+fi
+
+if [ -f "tests/run_phase8_tests.sh" ]; then
+    run_test_suite "Phase 8: Session & File Management Tests" "tests/run_phase8_tests.sh"
+fi
+
+if [ -f "tests/run_phase9_tests.sh" ]; then
+    run_test_suite "Phase 9: Colorscheme & Final Polish Tests" "tests/run_phase9_tests.sh"
+fi
+
 # Additional test scripts
 if [ -f "tests/test_config.sh" ]; then
     run_test_suite "Config Load Tests" "tests/test_config.sh"

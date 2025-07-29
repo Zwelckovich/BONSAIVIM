@@ -57,6 +57,17 @@ return {
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
       { "<leader>d", group = "diagnostics" },
+      
+      -- Code action placeholders (actual mappings in lsp.lua on_attach)
+      { "<leader>ca", desc = "Code action (LSP required)" },
+      { "<leader>cr", desc = "Code rename (LSP required)" },
+      { "<leader>cd", desc = "Code definition (LSP required)" },
+      { "<leader>ci", desc = "Code implementation (LSP required)" },
+      { "<leader>ch", desc = "Code hover (LSP required)" },
+      { "<leader>cs", desc = "Code signature help (LSP required)" },
+      { "<leader>cw", desc = "Add workspace folder (LSP required)" },
+      { "<leader>cW", desc = "Remove workspace folder (LSP required)" },
+      { "<leader>cl", desc = "List workspace folders (LSP required)" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
       { "<leader>h", group = "hunk" },
@@ -85,6 +96,12 @@ return {
       -- Flash navigation descriptions
       { "s", desc = "Flash forward" },
       { "S", desc = "Flash backward" },
+      
+      -- Undotree toggle (mapping defined in undotree.lua)
+      { "<leader>u", desc = "Toggle undotree" },
+      
+      -- Lazy plugin manager
+      { "<leader>L", "<cmd>Lazy<cr>", desc = "Open Lazy plugin manager" },
     })
   end,
 }

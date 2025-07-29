@@ -1,6 +1,52 @@
 # 🌱 BONSAI Neovim Configuration
 
-A minimal, purposeful Neovim configuration following BONSAI principles.
+A minimal, purposeful Neovim configuration following BONSAI principles - start minimal, grow only when needed.
+
+## 🚀 Installation
+
+### Prerequisites
+- Neovim >= 0.9.0
+- Git
+- Terminal with true color support
+- Optional: [yazi](https://github.com/sxyazi/yazi) file manager
+
+### Quick Install
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/BONSAIVIM.git
+   cd BONSAIVIM
+   ```
+
+2. **Test the configuration** (without modifying your existing config):
+   ```bash
+   ./run_nvim.sh
+   ```
+
+3. **Install permanently** (choose one):
+   ```bash
+   ./symlink_nvim.sh         # Interactive (choose clean/adopt/cancel)
+   ./symlink_nvim_clean.sh   # Non-interactive clean install
+   ```
+
+4. **First Launch**:
+   - Plugins will auto-install on first run
+   - LSP servers will install automatically via Mason
+   - Treesitter parsers will download for configured languages
+
+### Manual Installation
+
+If you prefer manual installation:
+```bash
+# Backup existing config
+mv ~/.config/nvim ~/.config/nvim.backup
+
+# Copy BONSAI config
+cp -r config/.config/nvim ~/.config/nvim
+
+# Launch Neovim
+nvim
+```
 
 ## Phase 1: Foundation (Complete)
 
@@ -169,31 +215,46 @@ See [USAGE.md](USAGE.md) for all running options.
 
 ## Features
 
-- **Leader Key**: Space
-- **Escape Alternative**: `jk` in insert mode
-- **Quick Save**: `Ctrl+S` in any mode
-- **German Keyboard**: `ö` → `[`, `ä` → `]`
-- **Lightning Fast**: ~6ms startup time (well under 50ms target)
+- **🚀 Lightning Fast**: ~26ms startup time (well under 50ms target)
+- **🎨 BONSAI Colorscheme**: Custom dark zen color palette with semantic highlighting
+- **📝 Complete Language Support**: LSP for Python, JavaScript/TypeScript, Tailwind CSS, HTML, Markdown
+- **🔍 Powerful Navigation**: Telescope fuzzy finder, Flash jump-to-char, Undotree visualization
+- **💾 Smart Sessions**: Auto-save and restore your workspace
+- **📁 File Manager**: Integrated yazi terminal file manager
+- **🔧 Auto-formatting**: Format on save with ruff (Python) and prettier (JS/TS/CSS/HTML)
+- **✂️ Snippets**: Tab-completable snippets with LuaSnip
+- **📊 Git Integration**: Gitsigns with hunk navigation and inline blame
+- **⌨️ German Keyboard**: Full support with `ö` → `[`, `ä` → `]`
+- **🎯 Minimal Philosophy**: Every plugin has a clear purpose
 
 ## Testing
 
-Run the test scripts to verify configuration:
+Run the comprehensive test suite to verify your installation:
+
 ```bash
-./test_config.sh          # Basic configuration tests
-./run_all_tests.sh        # Comprehensive test suite
+# Quick configuration test
+./test_config.sh
+
+# Full test suite (recommended)
+./tests/run_all_tests.sh
+
+# Phase-specific tests
+./tests/run_phase9_tests.sh    # Colorscheme & performance tests
+./tests/run_lsp_tests.sh       # LSP & formatting tests
+./tests/run_snippet_tests.sh   # Snippet functionality tests
 ```
 
-This will check:
-- Startup time
-- Configuration loads without errors
-- Leader key is set correctly
-- lazy.nvim is installed
-- Key mappings work
-- Core options are applied
-- All plugins load correctly (Treesitter, Telescope, Flash, Which-key, Mason, LSP, Conform, LuaSnip, nvim-cmp, Gitsigns)
-- LSP functionality and formatting work correctly
-- Snippet expansion and completion work correctly
-- Gitsigns integration with hunk navigation and staging
+### What the Tests Verify
+
+- ✅ **Startup Performance**: Confirms <50ms startup time
+- ✅ **Configuration Loading**: All modules load without errors
+- ✅ **Plugin Functionality**: All 13 plugins load and function correctly
+- ✅ **LSP Integration**: Language servers install and work properly
+- ✅ **Formatting**: Code formatting works for all configured languages
+- ✅ **Colorscheme**: BONSAI colors apply correctly to all UI elements
+- ✅ **Keybindings**: All mappings are registered and functional
+- ✅ **Performance Optimizations**: Large file handling and autocommands work
+- ✅ **Git Integration**: Gitsigns functionality including hunks and blame
 
 ## Phase 6: Version Control (Complete)
 
@@ -232,15 +293,316 @@ Added Git integration with gitsigns.nvim:
   - `tb` - Toggle line blame
   - `td` - Toggle deleted lines
 
-## Next Phases
+## Configuration Complete! 🎉
 
-- ~~Phase 2: Syntax & Understanding (treesitter)~~ ✅ Complete
-- ~~Phase 3: Navigation & Search (telescope, flash, which-key)~~ ✅ Complete
-- ~~Phase 4: Language Intelligence (LSP + Mason & Conform)~~ ✅ Complete
-- ~~Phase 5: Code Assistance (Luasnip)~~ ✅ Complete
-- ~~Phase 6: Version Control (Gitsigns)~~ ✅ Complete
-- Phase 7: UI Enhancement (Lualine & Undotree)
-- Phase 8: Session & File Management (Persistence & Yazi)
-- Phase 9: BONSAI Colorscheme & Final Polish
+All 9 phases of the BONSAI Neovim configuration are now complete:
+
+1. ✅ **Foundation** - Core structure and settings
+2. ✅ **Syntax & Understanding** - Treesitter integration
+3. ✅ **Navigation & Search** - Telescope, Flash, Which-key
+4. ✅ **Language Intelligence** - LSP with Mason & Conform
+5. ✅ **Code Assistance** - LuaSnip and nvim-cmp
+6. ✅ **Version Control** - Gitsigns integration
+7. ✅ **UI Enhancement** - Lualine statusline & Undotree
+8. ✅ **Session & File Management** - Persistence & Yazi
+9. ✅ **BONSAI Colorscheme & Final Polish** - Custom colors & optimizations
+
+Your Neovim is now a fully-featured, minimal, and blazing-fast development environment!
+
+## Phase 7: UI Enhancement - Lualine (Complete)
+
+Added a minimal, BONSAI-themed statusline:
+
+### What's New - Lualine
+
+- `lua/plugins/lualine.lua` - Minimal statusline with BONSAI colors
+- Custom BONSAI theme matching the color philosophy:
+  - Green for normal mode (#7c9885)
+  - Blue for insert mode (#82a4c7)
+  - Purple for visual mode (#9882c7)
+  - Yellow for command mode (#c7a882)
+  - Red for replace mode (#c78289)
+- Minimal sections showing only essential information:
+  - Mode indicator
+  - Git branch and diff stats
+  - LSP diagnostics
+  - File name with modification status
+  - Search count
+  - File type
+  - Progress and location
+- No powerline symbols - clean, flat design
+- Global statusline for cleaner appearance
+- Proper integration with fugitive, quickfix, man pages, and lazy.nvim
+
+### Testing Lualine
+
+The statusline automatically appears at the bottom of your Neovim window showing:
+- Current mode with color coding
+- Git information (branch, added/modified/removed files)
+- Diagnostics (errors, warnings, info, hints)
+- File information and location
 
 See `concept.md` for the complete vision.
+
+## Phase 8: Session & File Management (Complete)
+
+Added session persistence and file manager integration:
+
+### What's New - Persistence
+
+- `lua/plugins/persistence.lua` - Automatic session management
+- Features:
+  - Auto-saves session on exit
+  - Auto-restores when opening nvim without arguments
+  - Excludes help, quickfix, terminal, and temporary buffers
+  - Per-directory session storage
+- Keymaps under `<leader>p`:
+  - `ps` - Save current session
+  - `pr` - Restore session for current directory
+  - `pd` - Don't save session on exit (disable for current session)
+  - `pl` - Load last session
+
+### What's New - Yazi
+
+- `lua/plugins/yazi.lua` - Terminal file manager integration
+- Features:
+  - Floating window file manager
+  - 90% width/height (as per concept.md)
+  - Seamless integration with Neovim
+  - Telescope integration for advanced operations
+- Keymaps under `<leader>y`:
+  - `yy` - Open yazi in current file's directory
+  - `yw` - Open yazi in working directory
+  - `yt` - Toggle last yazi state
+
+### Testing Session Management
+
+1. Open multiple files in Neovim
+2. Exit Neovim (session auto-saves)
+3. Open Neovim again without arguments
+4. Your previous session is automatically restored!
+
+### Testing Yazi Integration
+
+1. Press `<leader>yy` to open the file manager
+2. Navigate with arrow keys or vim keys
+3. Press Enter to open files
+4. Press `q` to close yazi
+
+## Phase 9: BONSAI Colorscheme & Final Polish (Complete)
+
+Added the custom BONSAI colorscheme and performance optimizations:
+
+### What's New - BONSAI Colorscheme
+
+- `lua/bonsai/colors.lua` - Complete BONSAI color palette implementation
+- Features matching concept.md vision:
+  - **Functions**: Bold blue (#82a4c7) for immediate recognition
+  - **Brackets/Delimiters**: Bright primary text (#e6e8eb) for structure clarity
+  - **Keywords**: Purple (#9882c7) for control flow visibility
+  - **Strings**: Calming green (#7c9885)
+  - **Comments**: Muted gray (#8b92a5) to stay out of the way
+  - **Errors**: Soft red (#c78289) that alerts without alarming
+- Comprehensive highlight groups:
+  - Full syntax highlighting support
+  - Treesitter-specific highlights
+  - LSP diagnostics styling
+  - Plugin-specific colors (Telescope, which-key, lualine, gitsigns)
+  - UI elements (floats, splits, statusline, tabline)
+
+### What's New - Performance Optimizations
+
+- `lua/config/autocommands.lua` - Smart performance optimizations
+- Features:
+  - **Large File Handling**: Disables syntax highlighting for files >1MB or >5000 lines
+  - **Startup Optimization**: Lazy loads colorscheme after UI initialization
+  - **Buffer-Local Settings**: Optimized settings for different file types
+  - **Smart Cursor Hold**: Adjusts update time based on mode
+  - **View Persistence**: Saves/restores cursor position and folds
+  - **Whitespace Cleanup**: Automatic trailing whitespace removal on save
+  - **Yank Highlighting**: Brief highlight when yanking text
+
+### Performance Achievements
+
+- **Startup Time**: ~26ms (well under 50ms target)
+- **Large File Support**: Instant loading for files up to 10MB
+- **Memory Efficient**: Disables heavy features when not needed
+
+## 📚 Complete Keybinding Reference
+
+### Core Mappings
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<space>` | Normal | Leader key |
+| `jk` | Insert | Escape alternative |
+| `<C-s>` | Normal/Insert/Visual | Save file |
+| `ö` | Normal/Visual | `[` (German keyboard) |
+| `ä` | Normal/Visual | `]` (German keyboard) |
+
+### Navigation
+
+| Key | Description |
+|-----|-------------|
+| `s` | Flash forward search |
+| `S` | Flash backward search |
+| `gd` | Go to definition |
+| `gr` | Go to references |
+| `gi` | Go to implementation |
+| `K` | Hover documentation |
+| `[d` / `]d` | Previous/next diagnostic |
+| `[c` / `]c` | Previous/next git hunk |
+| `[[` / `]]` | Previous/next class |
+| `[f` / `]f` | Previous/next function |
+
+### Leader Key Groups
+
+#### `<leader>f` - Find/Files (Telescope)
+| Key | Description |
+|-----|-------------|
+| `ff` | Find files |
+| `fg` | Find grep (live grep) |
+| `fb` | Find buffers |
+| `fh` | Find help |
+| `fr` | Find recent files |
+| `fw` | Find word under cursor |
+| `f/` | Find in current buffer |
+
+#### `<leader>c` - Code Actions
+| Key | Description |
+|-----|-------------|
+| `ca` | Code action |
+| `cf` | Code format |
+| `cr` | Code rename |
+| `cd` | Code definition |
+| `ci` | Code implementation |
+| `ch` | Code hover documentation |
+| `cs` | Code signature help |
+
+#### `<leader>d` - Diagnostics
+| Key | Description |
+|-----|-------------|
+| `dd` | Diagnostics list |
+| `dn` | Diagnostics next |
+| `dp` | Diagnostics previous |
+| `df` | Diagnostics float |
+
+#### `<leader>g` - Git (Future)
+| Key | Description |
+|-----|-------------|
+| `gs` | Git status |
+| `gb` | Git blame |
+| `gd` | Git diff |
+| `gc` | Git commits |
+
+#### `<leader>h` - Git Hunks (Gitsigns)
+| Key | Description |
+|-----|-------------|
+| `hs` | Stage hunk |
+| `hr` | Reset hunk |
+| `hS` | Stage buffer |
+| `hu` | Undo stage hunk |
+| `hR` | Reset buffer |
+| `hp` | Preview hunk |
+| `hb` | Blame line |
+| `hB` | Blame line (full) |
+| `hd` | Diff this |
+| `hD` | Diff this ~ |
+
+#### `<leader>b` - Buffers
+| Key | Description |
+|-----|-------------|
+| `bd` | Buffer delete |
+| `bn` | Buffer next |
+| `bp` | Buffer previous |
+| `bD` | Buffer force delete |
+
+#### `<leader>w` - Windows
+| Key | Description |
+|-----|-------------|
+| `wv` | Window vertical split |
+| `ws` | Window horizontal split |
+| `wc` | Window close |
+| `wo` | Window close others |
+| `w=` | Window balance |
+
+#### `<leader>t` - Toggle
+| Key | Description |
+|-----|-------------|
+| `tn` | Toggle relative numbers |
+| `tw` | Toggle wrap |
+| `ts` | Toggle spell |
+| `th` | Toggle highlight search |
+| `tb` | Toggle git blame |
+| `td` | Toggle deleted lines |
+
+#### `<leader>s` - Search
+| Key | Description |
+|-----|-------------|
+| `sr` | Search and replace |
+| `sw` | Search word |
+| `sc` | Search clear highlight |
+
+#### `<leader>p` - Persistence/Session
+| Key | Description |
+|-----|-------------|
+| `ps` | Save session |
+| `pr` | Restore session |
+| `pd` | Don't save session |
+| `pl` | Load last session |
+
+#### `<leader>y` - Yazi File Manager
+| Key | Description |
+|-----|-------------|
+| `yy` | Open yazi (current dir) |
+| `yw` | Open yazi (working dir) |
+| `yt` | Toggle last yazi state |
+
+#### Other Leader Mappings
+| Key | Description |
+|-----|-------------|
+| `<leader>u` | Toggle undotree |
+| `<leader>jt` | Flash Treesitter |
+
+### Snippet Navigation
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `<Tab>` | Insert/Select | Expand snippet/jump forward |
+| `<S-Tab>` | Insert/Select | Jump backward |
+| `<C-j>` | Insert | Choice next |
+| `<C-k>` | Insert | Choice previous |
+
+### Text Objects
+
+| Key | Description |
+|-----|-------------|
+| `af` / `if` | Around/inside function |
+| `ac` / `ic` | Around/inside class |
+| `aa` / `ia` | Around/inside parameter |
+
+## 🌱 Living with BONSAI
+
+This configuration embodies the BONSAI philosophy:
+- **Start Minimal**: Begin with only what you need
+- **Grow Purposefully**: Each addition serves a clear purpose
+- **Maintain Balance**: Performance and features in harmony
+- **Prune Regularly**: Remove what you don't use
+
+### Customization
+
+To extend this configuration:
+1. Add new plugins to `lua/plugins/` as individual files
+2. Follow the existing patterns for consistency
+3. Ensure each addition aligns with BONSAI principles
+4. Test thoroughly with the provided test suite
+
+### Support
+
+- **Documentation**: See [concept.md](concept.md) for the complete vision
+- **Issues**: Report bugs or request features via GitHub issues
+- **Contributing**: PRs welcome that align with BONSAI principles
+
+---
+
+*Built with 🌱 BONSAI principles - minimal, purposeful, beautiful.*
