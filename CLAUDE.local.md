@@ -70,3 +70,18 @@
 - **Discovery**: LSP servers need nvim-cmp capabilities for better completion
 - **Solution**: Integrated cmp_nvim_lsp.default_capabilities() in LSP config
 - **Benefit**: Enhanced completion experience with snippet support
+
+### Which-Key v3 Configuration
+- **Date**: 2025-07-29
+- **Discovery**: which-key.nvim v3 renamed 'window' option to 'win'
+- **Current Status**: Using hybrid configuration (v2 'window' with v3 add() method)
+- **Migration Path**: Change 'window' to 'win' for full v3 compliance
+- **Deprecated Options**: border, position, margin (removed in v3)
+- **New Options**: no_overlap, zindex, separate wo/bo tables
+
+### Keymap Conflicts
+- **Date**: 2025-07-29
+- **Discovery**: Treesitter and gitsigns both used [c/]c for navigation
+- **Conflict**: [c/]c was mapped for both class navigation (treesitter) and hunk navigation (gitsigns)
+- **Solution**: Changed treesitter to use [[/]] for class navigation (matches concept.md)
+- **Result**: Both plugins can coexist without keymap conflicts

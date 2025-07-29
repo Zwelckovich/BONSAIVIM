@@ -2,15 +2,15 @@
 
 # Test script for LuaSnip and nvim-cmp functionality
 
+# Change to project root
+cd "$(dirname "$0")/.."
+
 echo "=== Testing LuaSnip and nvim-cmp ==="
 echo
 
-# Set up test environment
-export NVIM_CONFIG_DIR="$(pwd)/config/.config/nvim"
-
 # Run the tests
 nvim --headless \
-  -u "$NVIM_CONFIG_DIR/init.lua" \
+  -u config/.config/nvim/init.lua \
   -c "lua require('lazy').load({ plugins = { 'nvim-cmp', 'LuaSnip' } })" \
   -c "lua dofile('tests/test_snippets.lua')" \
   2>&1

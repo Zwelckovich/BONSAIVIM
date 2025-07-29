@@ -1,13 +1,14 @@
 #!/bin/bash
 # Test Neovim health check after fixes
 
+# Change to project root
+cd "$(dirname "$0")/.."
+
 echo "Running Neovim health check to verify fixes..."
 echo "=============================================="
 
-cd /home/zwelch/projects/BONSAIVIM/config/.config/nvim
-
 # Run health check and filter for relevant sections
-nvim --headless +'checkhealth lazy which-key' +'qa' 2>&1 | grep -E "(lazy:|which-key:|WARNING|ERROR|OK)" | head -100
+nvim --headless -u config/.config/nvim/init.lua +'checkhealth lazy which-key' +'qa' 2>&1 | grep -E "(lazy:|which-key:|WARNING|ERROR|OK)" | head -100
 
 echo -e "\n=============================================="
 echo "Summary of fixes applied:"

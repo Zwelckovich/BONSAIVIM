@@ -26,6 +26,7 @@ if test_plugin("LSPConfig", "lspconfig") then passed = passed + 1 else failed = 
 if test_plugin("Conform", "conform") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("LuaSnip", "luasnip") then passed = passed + 1 else failed = failed + 1 end
 if test_plugin("nvim-cmp", "cmp") then passed = passed + 1 else failed = failed + 1 end
+if test_plugin("Gitsigns", "gitsigns") then passed = passed + 1 else failed = failed + 1 end
 
 print("\n=== Summary ===")
 print("Passed: " .. passed)
@@ -33,7 +34,7 @@ print("Failed: " .. failed)
 print("Total: " .. (passed + failed))
 
 -- Write results to file
-local f = io.open("plugin_test_results.txt", "w")
+local f = io.open("tests/results/plugin_test_results.txt", "w")
 if f then
   f:write("Passed: " .. passed .. "\n")
   f:write("Failed: " .. failed .. "\n")

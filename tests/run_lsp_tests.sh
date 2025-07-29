@@ -3,6 +3,9 @@
 
 set -e  # Exit on error
 
+# Change to project root
+cd "$(dirname "$0")/.."
+
 echo "=== BONSAI LSP & Formatting Test Suite ==="
 echo "Testing Phase 4: Language Intelligence - LSP + Mason & Conform"
 echo "================================================"
@@ -162,7 +165,7 @@ run_test "LSP keymaps" \
     end, 2000)' 2>&1 | grep -q 'LSP keymaps registered'"
 
 # Cleanup test files
-rm -f test_python_lsp.py test_typescript.ts test_format.py lsp_test_results.txt
+rm -f test_python_lsp.py test_typescript.ts test_format.py
 
 # Summary
 echo -e "\n================================================"

@@ -1,0 +1,22 @@
+=== BONSAI Neovim Test Suite ===
+================================
+
+[1;33mRunning Core Configuration Tests...[0m
+Error detected while processing command line:
+E5108: Error executing lua [string ":lua"]:1: module 'test_config' not found:
+	no field package.preload['test_config']
+	cache_loader: module 'test_config' not found
+	cache_loader_lib: module 'test_config' not found
+	no file './test_config.lua'
+	no file '/usr/share/luajit-2.1/test_config.lua'
+	no file '/usr/local/share/lua/5.1/test_config.lua'
+	no file '/usr/local/share/lua/5.1/test_config/init.lua'
+	no file '/usr/share/lua/5.1/test_config.lua'
+	no file '/usr/share/lua/5.1/test_config/init.lua'
+	no file './test_config.so'
+	no file '/usr/local/lib/lua/5.1/test_config.so'
+	no file '/usr/lib/lua/5.1/test_config.so'
+	no file '/usr/local/lib/lua/5.1/loadall.so'
+stack traceback:
+	[C]: in function 'require'
+	[string ":lua"]:1: in main chunk

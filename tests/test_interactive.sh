@@ -20,5 +20,7 @@ echo ""
 echo "Press Enter to continue..."
 read
 
-cd /home/zwelch/projects/BONSAIVIM/config/.config/nvim
-nvim -c "echo 'Ready! Press <space> to test which-key menu'"
+# Change to project root
+cd "$(dirname "$0")/.."
+
+nvim -u config/.config/nvim/init.lua -c "echo 'Ready! Press <space> to test which-key menu'"

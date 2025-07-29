@@ -190,9 +190,47 @@ This will check:
 - lazy.nvim is installed
 - Key mappings work
 - Core options are applied
-- All plugins load correctly (Treesitter, Telescope, Flash, Which-key, Mason, LSP, Conform, LuaSnip, nvim-cmp)
+- All plugins load correctly (Treesitter, Telescope, Flash, Which-key, Mason, LSP, Conform, LuaSnip, nvim-cmp, Gitsigns)
 - LSP functionality and formatting work correctly
 - Snippet expansion and completion work correctly
+- Gitsigns integration with hunk navigation and staging
+
+## Phase 6: Version Control (Complete)
+
+Added Git integration with gitsigns.nvim:
+- **Sign Column**: Subtle indicators for additions, deletions, and modifications
+- **Hunk Navigation**: `[c`/`]c` to navigate between changes
+- **Hunk Operations**: Stage, reset, preview hunks under `<leader>h`
+- **Line Blame**: Current line blame with muted colors (toggle with `<leader>tb`)
+- **BONSAI Colors**: Git signs use semantic colors that don't distract from code
+
+### What's New in Phase 6
+
+- `lua/plugins/gitsigns.lua` - Complete Git integration configuration
+- Keymap conflict resolved: Treesitter now uses `[[`/`]]` for class navigation
+- Comprehensive test suite for gitsigns functionality
+
+### Key Git Features
+
+- **Hunk Navigation**:
+  - `[c` - Previous git hunk
+  - `]c` - Next git hunk
+
+- **Hunk Operations** (`<leader>h` prefix):
+  - `hs` - Stage hunk
+  - `hr` - Reset hunk
+  - `hS` - Stage buffer
+  - `hu` - Undo stage hunk
+  - `hR` - Reset buffer
+  - `hp` - Preview hunk
+  - `hb` - Blame line
+  - `hB` - Blame line (full commit)
+  - `hd` - Diff this
+  - `hD` - Diff this ~
+
+- **Toggle Features** (`<leader>t` prefix):
+  - `tb` - Toggle line blame
+  - `td` - Toggle deleted lines
 
 ## Next Phases
 
@@ -200,7 +238,7 @@ This will check:
 - ~~Phase 3: Navigation & Search (telescope, flash, which-key)~~ ✅ Complete
 - ~~Phase 4: Language Intelligence (LSP + Mason & Conform)~~ ✅ Complete
 - ~~Phase 5: Code Assistance (Luasnip)~~ ✅ Complete
-- Phase 6: Version Control (Gitsigns)
+- ~~Phase 6: Version Control (Gitsigns)~~ ✅ Complete
 - Phase 7: UI Enhancement (Lualine & Undotree)
 - Phase 8: Session & File Management (Persistence & Yazi)
 - Phase 9: BONSAI Colorscheme & Final Polish

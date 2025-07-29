@@ -37,11 +37,15 @@ return {
     vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = colors.border_subtle, bg = colors.bg_primary })
     vim.api.nvim_set_hl(0, "WhichKeyValue", { fg = colors.yellow_primary })
 
-    -- Merge opts with our configuration - keep it simple
+    -- Merge opts with our configuration
     local setup_opts = vim.tbl_deep_extend("force", {
-      -- Just the essential config
+      -- Try the helix preset which provides right-side panel
+      preset = "helix",
       win = {
         border = "rounded",
+        wo = {
+          winblend = 0, -- No transparency
+        },
       },
     }, opts)
 
@@ -73,10 +77,10 @@ return {
       -- Describe existing navigation mappings
       { "[f", desc = "Previous function" },
       { "]f", desc = "Next function" },
-      { "[c", desc = "Previous class" },
-      { "]c", desc = "Next class" },
-      { "[[", desc = "Previous function/class" },
-      { "]]", desc = "Next function/class" },
+      { "[c", desc = "Previous git hunk" },
+      { "]c", desc = "Next git hunk" },
+      { "[[", desc = "Previous class" },
+      { "]]", desc = "Next class" },
 
       -- Flash navigation descriptions
       { "s", desc = "Flash forward" },

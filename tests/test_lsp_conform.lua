@@ -183,7 +183,7 @@ print("Failed: " .. failed)
 print("Total: " .. (passed + failed))
 
 -- Write results
-local f = io.open("lsp_test_results.txt", "w")
+local f = io.open("tests/results/lsp_test_results.txt", "w")
 if f then
   f:write("LSP & Formatting Test Results\n")
   f:write("============================\n")

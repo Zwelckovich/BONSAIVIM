@@ -29,7 +29,7 @@ function M.run()
   print("=== BONSAI Neovim Configuration Tests ===\n")
   
   -- Also write to a results file
-  local results_file = io.open("test_results.txt", "w")
+  local results_file = io.open("tests/results/test_results.txt", "w")
   local function log(msg)
     print(msg)
     if results_file then

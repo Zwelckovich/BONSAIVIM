@@ -1,6 +1,9 @@
 #!/bin/bash
 # Main test runner for BONSAI Neovim configuration
 
+# Change to project root
+cd "$(dirname "$0")/.."
+
 echo "=== BONSAI Neovim Test Suite ==="
 echo "================================"
 
@@ -27,18 +30,30 @@ run_test_suite() {
     fi
 }
 
-# Run existing test suites
-if [ -f "config/.config/nvim/run_tests.sh" ]; then
-    run_test_suite "Core Configuration Tests" "config/.config/nvim/run_tests.sh"
+# Run test suites
+if [ -f "tests/run_tests.sh" ]; then
+    run_test_suite "Core Configuration Tests" "tests/run_tests.sh"
 fi
 
-if [ -f "config/.config/nvim/test_plugins.sh" ]; then
-    run_test_suite "Plugin Tests" "config/.config/nvim/test_plugins.sh"
+if [ -f "tests/test_plugins.sh" ]; then
+    run_test_suite "Plugin Tests" "tests/test_plugins.sh"
 fi
 
-# Run new LSP tests
 if [ -f "tests/run_lsp_tests.sh" ]; then
     run_test_suite "LSP & Formatting Tests" "tests/run_lsp_tests.sh"
+fi
+
+if [ -f "tests/run_snippet_tests.sh" ]; then
+    run_test_suite "Snippet Tests" "tests/run_snippet_tests.sh"
+fi
+
+# Additional test scripts
+if [ -f "tests/test_config.sh" ]; then
+    run_test_suite "Config Load Tests" "tests/test_config.sh"
+fi
+
+if [ -f "tests/test_health.sh" ]; then
+    run_test_suite "Health Check Tests" "tests/test_health.sh"
 fi
 
 # Summary
