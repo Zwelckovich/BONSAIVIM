@@ -4,24 +4,17 @@
 return {
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	build = "cd app && yarn install",
+	build = function()
+		require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+		vim.fn["mkdp#util#install"]()
+	end,
 	init = function()
 		vim.g.mkdp_filetypes = { "markdown" }
-		-- Set up autocmd to clean yarn.lock after lazy operations
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "LazySync",
-			callback = function()
-				vim.defer_fn(function()
-					local yarn_lock = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app/yarn.lock"
-					if vim.fn.filereadable(yarn_lock) == 1 then
-						vim.fn.delete(yarn_lock)
-					end
-				end, 1000)
-			end,
-		})
 	end,
 	ft = { "markdown" },
 	config = function()
+		-- Trigger filetype detection (LazyVim pattern)
+		vim.cmd([[do FileType]])
 		-- Configure markdown preview options
 		vim.g.mkdp_auto_start = 0 -- Don't auto-start (use <leader>mp to toggle)
 		vim.g.mkdp_auto_close = 1 -- Auto-close preview when leaving markdown buffer
@@ -233,17 +226,5 @@ return {
 
 		-- Define keymapping
 		vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Toggle markdown preview" })
-		
-		-- Add cleanup command for yarn.lock issue
-		vim.api.nvim_create_user_command("MarkdownPreviewCleanup", function()
-			local plugin_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim"
-			local yarn_lock = plugin_path .. "/app/yarn.lock"
-			if vim.fn.filereadable(yarn_lock) == 1 then
-				vim.fn.delete(yarn_lock)
-				print("Cleaned up yarn.lock from markdown-preview.nvim")
-			else
-				print("No yarn.lock found to clean up")
-			end
-		end, { desc = "Clean up yarn.lock from markdown-preview plugin" })
 	end,
 }
