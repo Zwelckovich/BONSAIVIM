@@ -68,6 +68,9 @@ return {
       { "<leader>cw", desc = "Add workspace folder (LSP required)" },
       { "<leader>cW", desc = "Remove workspace folder (LSP required)" },
       { "<leader>cl", desc = "List workspace folders (LSP required)" },
+      
+      -- Conform formatter info
+      { "<leader>cI", "<cmd>ConformInfo<cr>", desc = "Show formatter info" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
       { "<leader>gh", group = "git hunks" },

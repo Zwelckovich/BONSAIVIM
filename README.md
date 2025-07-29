@@ -128,6 +128,10 @@ Added LSP support and code formatting:
 - `lua/plugins/conform.lua` - Format on save with 1000ms timeout
 - Automatic LSP server installation via Mason
 - Smart code actions and navigation
+- **Custom Features**:
+  - `lua/bonsai/align-comments.lua` - LazyVim-style comment alignment for shell scripts
+  - Filetype detection enabled for proper formatter activation
+  - Support for bash/shell script formatting with shfmt
 
 ### Key LSP Features
 
@@ -140,6 +144,7 @@ Added LSP support and code formatting:
 - **Code Actions** (`<leader>c` group):
   - `ca` - Code action
   - `cf` - Code format
+  - `cI` - Show formatter info (ConformInfo)
   - `cr` - Code rename
   - `cd` - Code definition
   - `ci` - Code implementation
@@ -157,6 +162,7 @@ Added LSP support and code formatting:
   - Python: ruff (replaces black, isort, flake8)
   - JS/TS/CSS/HTML/Markdown: prettier
   - Lua: stylua (when available)
+  - Bash/Shell: shfmt with custom comment alignment (LazyVim-style)
 
 ## Phase 5: Code Assistance (Complete)
 
@@ -223,7 +229,7 @@ See [USAGE.md](USAGE.md) for all running options.
 - **🗂️ Buffer Tabs**: Visual buffer tabs like browser tabs with bufferline
 - **💾 Smart Sessions**: Auto-save and restore your workspace
 - **📁 File Manager**: Integrated yazi terminal file manager
-- **🔧 Auto-formatting**: Format on save with ruff (Python) and prettier (JS/TS/CSS/HTML)
+- **🔧 Auto-formatting**: Format on save with ruff (Python), prettier (JS/TS/CSS/HTML), stylua (Lua), and shfmt (Bash/Shell)
 - **✂️ Snippets**: Tab-completable snippets with LuaSnip
 - **📊 Git Integration**: Gitsigns with hunk navigation and inline blame
 - **⌨️ German Keyboard**: Full support with `ö` → `[`, `ä` → `]`
@@ -242,21 +248,24 @@ Run the comprehensive test suite to verify your installation:
 
 # Phase-specific tests
 ./tests/run_phase9_tests.sh    # Colorscheme & performance tests
+./tests/run_phase10_tests.sh   # nvim-spectre search & replace tests
 ./tests/run_lsp_tests.sh       # LSP & formatting tests
 ./tests/run_snippet_tests.sh   # Snippet functionality tests
+./tests/run_spectre_tests.sh   # Standalone spectre functionality tests
 ```
 
 ### What the Tests Verify
 
 - ✅ **Startup Performance**: Confirms <50ms startup time
 - ✅ **Configuration Loading**: All modules load without errors
-- ✅ **Plugin Functionality**: All 13 plugins load and function correctly
+- ✅ **Plugin Functionality**: All plugins load and function correctly (18+ active plugins)
 - ✅ **LSP Integration**: Language servers install and work properly
 - ✅ **Formatting**: Code formatting works for all configured languages
 - ✅ **Colorscheme**: BONSAI colors apply correctly to all UI elements
 - ✅ **Keybindings**: All mappings are registered and functional
 - ✅ **Performance Optimizations**: Large file handling and autocommands work
 - ✅ **Git Integration**: Gitsigns functionality including hunks and blame
+- ✅ **Search & Replace**: nvim-spectre project-wide search and replace functionality
 
 ## Phase 6: Version Control (Complete)
 
@@ -485,6 +494,17 @@ Added powerful project-wide search and replace functionality:
 - `ti` - Toggle case sensitivity
 - `th` - Toggle hidden files
 
+## 🔧 Troubleshooting
+
+### Formatters Not Working
+
+If formatters don't run when saving files:
+1. Check formatter info with `<leader>cI` (ConformInfo)
+2. Ensure filetype detection is enabled (required for conform.nvim)
+3. Verify formatter is installed (e.g., `which shfmt`, `which stylua`)
+
+The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.lua to enable filetype detection.
+
 ## 📚 Complete Keybinding Reference
 
 ### Core Mappings
@@ -530,6 +550,7 @@ Added powerful project-wide search and replace functionality:
 |-----|-------------|
 | `ca` | Code action |
 | `cf` | Code format |
+| `cI` | Show formatter info (ConformInfo) |
 | `cr` | Code rename |
 | `cd` | Code definition |
 | `ci` | Code implementation |
