@@ -4,7 +4,13 @@
 return {
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	build = "cd app && npm install",
+	build = function()
+		-- Use the plugin's install function
+		vim.fn["mkdp#util#install"]()
+		-- Clean up yarn.lock to prevent lazy.nvim sync issues
+		local plugin_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim"
+		vim.fn.delete(plugin_path .. "/app/yarn.lock")
+	end,
 	init = function()
 		vim.g.mkdp_filetypes = { "markdown" }
 	end,
@@ -221,7 +227,17 @@ return {
 
 		-- Define keymapping
 		vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Toggle markdown preview" })
+		
+		-- Add cleanup command for yarn.lock issue
+		vim.api.nvim_create_user_command("MarkdownPreviewCleanup", function()
+			local plugin_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim"
+			local yarn_lock = plugin_path .. "/app/yarn.lock"
+			if vim.fn.filereadable(yarn_lock) == 1 then
+				vim.fn.delete(yarn_lock)
+				print("Cleaned up yarn.lock from markdown-preview.nvim")
+			else
+				print("No yarn.lock found to clean up")
+			end
+		end, { desc = "Clean up yarn.lock from markdown-preview plugin" })
 	end,
 }
-
-
