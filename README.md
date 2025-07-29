@@ -261,7 +261,7 @@ Run the comprehensive test suite to verify your installation:
 
 - ✅ **Startup Performance**: Confirms <50ms startup time
 - ✅ **Configuration Loading**: All modules load without errors
-- ✅ **Plugin Functionality**: All plugins load and function correctly (17+ active plugins)
+- ✅ **Plugin Functionality**: All plugins load and function correctly (19 active plugins)
 - ✅ **LSP Integration**: Language servers install and work properly
 - ✅ **Formatting**: Code formatting works for all configured languages
 - ✅ **Colorscheme**: BONSAI colors apply correctly to all UI elements
@@ -498,6 +498,32 @@ Added powerful project-wide search and replace functionality:
 - `ti` - Toggle case sensitivity
 - `th` - Toggle hidden files
 
+## Phase 13: Smart Commenting - Comment.nvim (Complete)
+Added intelligent language-aware commenting:
+
+### What's New - Comment.nvim
+- `lua/plugins/comment.lua` - Smart commenting with treesitter integration
+- Features:
+  - **Language-Aware**: Detects correct comment style for each language
+  - **Embedded Language Support**: JSX in JavaScript, SQL in Python strings, etc.
+  - **Multiple Comment Styles**: Line comments (`//`, `#`) and block comments (`/* */`)
+  - **Motion Support**: Comment any text object (`gcip` for paragraph, `gc3j` for 3 lines)
+  - **Visual Mode**: Select text and comment with `gc`
+- BONSAI Integration:
+  - Minimal keybindings following vim-commentary patterns
+  - Treesitter context for embedded languages
+  - Seamless integration with existing text objects
+
+### Testing Comment.nvim
+1. **Toggle Line**: Press `gcc` on any line to toggle comment
+2. **Comment Motion**: Press `gc` followed by motion (e.g., `gcap` for paragraph)
+3. **Visual Comment**: Select text in visual mode, then press `gc`
+4. **Add Comments**: 
+   - `gco` - Add comment on line below
+   - `gcO` - Add comment on line above
+   - `gcA` - Add comment at end of line
+5. **Block Comments**: Use `gb` instead of `gc` for block-style comments
+
 ## 🔧 Troubleshooting
 
 ### Formatters Not Working
@@ -520,6 +546,21 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `<C-s>` | Normal/Insert/Visual | Save file |
 | `ö` | Normal/Visual | `[` (German keyboard) |
 | `ä` | Normal/Visual | `]` (German keyboard) |
+
+### Commenting
+
+| Key | Mode | Description |
+|-----|------|-------------|
+| `gcc` | Normal | Toggle line comment |
+| `gbc` | Normal | Toggle block comment |
+| `gc{motion}` | Normal | Comment motion (e.g., `gcip` for paragraph) |
+| `gb{motion}` | Normal | Block comment motion |
+| `gc` | Visual | Comment selection |
+| `gb` | Visual | Block comment selection |
+| `gco` | Normal | Add comment on line below |
+| `gcO` | Normal | Add comment on line above |
+| `gcA` | Normal | Add comment at end of line |
+| `<leader>c/` | Normal/Visual | Toggle comment (alternative binding) |
 
 ### Navigation
 

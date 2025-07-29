@@ -101,6 +101,11 @@ if test_plugin("Lazygit", "lazygit") then
 else
 	failed = failed + 1
 end
+if test_plugin("Comment", "Comment") then
+	passed = passed + 1
+else
+	failed = failed + 1
+end
 -- Special test for undotree (Vimscript plugin with lazy loading)
 -- Force load undotree first since it's lazy loaded on key press
 local lazy = require("lazy")
