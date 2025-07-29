@@ -4,15 +4,21 @@
 return {
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-	build = function()
-		-- Use the plugin's install function
-		vim.fn["mkdp#util#install"]()
-		-- Clean up yarn.lock to prevent lazy.nvim sync issues
-		local plugin_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim"
-		vim.fn.delete(plugin_path .. "/app/yarn.lock")
-	end,
+	build = "cd app && yarn install",
 	init = function()
 		vim.g.mkdp_filetypes = { "markdown" }
+		-- Set up autocmd to clean yarn.lock after lazy operations
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "LazySync",
+			callback = function()
+				vim.defer_fn(function()
+					local yarn_lock = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app/yarn.lock"
+					if vim.fn.filereadable(yarn_lock) == 1 then
+						vim.fn.delete(yarn_lock)
+					end
+				end, 1000)
+			end,
+		})
 	end,
 	ft = { "markdown" },
 	config = function()
