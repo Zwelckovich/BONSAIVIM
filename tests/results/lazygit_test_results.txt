@@ -1,0 +1,5 @@
+LazyGit Test Results
+===================
+Passed: 14
+Failed: 0
+Total: 14

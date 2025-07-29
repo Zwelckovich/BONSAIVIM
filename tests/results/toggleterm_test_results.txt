@@ -1,0 +1,31 @@
+=== Toggleterm Plugin Tests ===
+✓ Toggleterm module loads
+✓ ToggleTerm command exists
+✓ TermExec command exists
+✓ Lazygit command exists
+✓ PythonRepl command exists
+✓ NodeRepl command exists
+✓ RunFile command exists
+✓ Toggle terminal keymap (<C-\>) exists
+✓ Terminal float keymap (<leader>tf) exists
+✓ Toggleterm configuration is valid
+✓ Terminal module can be required
+✓ Float terminal options are set
+✓ BONSAI highlight groups are set
+✓ Terminal size function works
+t  <C-J>       * <Cmd>wincmd j<CR>
+                 Navigate down from terminal
+t  <C-H>       * <Cmd>wincmd h<CR>
+                 Navigate left from terminal
+t  <C-Bslash>  * <Cmd>ToggleTerm<CR>
+                 Toggle terminal
+t  <C-L>       * <Cmd>wincmd l<CR>
+                 Navigate right from terminal
+t  <C-K>       * <Cmd>wincmd k<CR>
+                 Navigate up from terminal
+✓ Terminal navigation keymaps exist
+
+=== Test Summary ===
+Passed: 15
+Failed: 0
+Total: 15

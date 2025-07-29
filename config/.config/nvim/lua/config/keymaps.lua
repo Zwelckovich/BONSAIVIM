@@ -80,7 +80,7 @@ map("n", "<leader>ts", ":set spell!<CR>", { desc = "Toggle spell check" })
 map("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle search highlight" })
 
 -- Toggle diagnostics virtual text (inline diagnostics)
-map("n", "<leader>tv", function()
+map("n", "<leader>td", function()
   local current_config = vim.diagnostic.config()
   local is_enabled = current_config.virtual_text ~= false
   

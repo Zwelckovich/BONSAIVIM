@@ -229,9 +229,10 @@ See [USAGE.md](USAGE.md) for all running options.
 - **🗂️ Buffer Tabs**: Visual buffer tabs like browser tabs with bufferline
 - **💾 Smart Sessions**: Auto-save and restore your workspace
 - **📁 File Manager**: Integrated yazi terminal file manager
+- **💻 Integrated Terminal**: Toggleterm with persistent sessions and custom terminals
 - **🔧 Auto-formatting**: Format on save with ruff (Python), prettier (JS/TS/CSS/HTML), stylua (Lua), and shfmt (Bash/Shell)
 - **✂️ Snippets**: Tab-completable snippets with LuaSnip
-- **📊 Git Integration**: Gitsigns with hunk navigation and inline blame
+- **📊 Git Integration**: Gitsigns with hunk navigation and inline blame + LazyGit visual interface
 - **⌨️ German Keyboard**: Full support with `ö` → `[`, `ä` → `]`
 - **🎯 Minimal Philosophy**: Every plugin has a clear purpose
 
@@ -252,13 +253,15 @@ Run the comprehensive test suite to verify your installation:
 ./tests/run_lsp_tests.sh       # LSP & formatting tests
 ./tests/run_snippet_tests.sh   # Snippet functionality tests
 ./tests/run_spectre_tests.sh   # Standalone spectre functionality tests
+./tests/run_toggleterm_tests.sh # Terminal integration tests
+./tests/run_lazygit_tests.sh   # LazyGit visual git interface tests
 ```
 
 ### What the Tests Verify
 
 - ✅ **Startup Performance**: Confirms <50ms startup time
 - ✅ **Configuration Loading**: All modules load without errors
-- ✅ **Plugin Functionality**: All plugins load and function correctly (18+ active plugins)
+- ✅ **Plugin Functionality**: All plugins load and function correctly (17+ active plugins)
 - ✅ **LSP Integration**: Language servers install and work properly
 - ✅ **Formatting**: Code formatting works for all configured languages
 - ✅ **Colorscheme**: BONSAI colors apply correctly to all UI elements
@@ -266,6 +269,7 @@ Run the comprehensive test suite to verify your installation:
 - ✅ **Performance Optimizations**: Large file handling and autocommands work
 - ✅ **Git Integration**: Gitsigns functionality including hunks and blame
 - ✅ **Search & Replace**: nvim-spectre project-wide search and replace functionality
+- ✅ **Terminal Integration**: Toggleterm with persistent sessions and custom terminals
 
 ## Phase 6: Version Control (Complete)
 
@@ -565,13 +569,16 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `dp` | Diagnostics previous |
 | `df` | Diagnostics float |
 
-#### `<leader>g` - Git (Future)
+#### `<leader>g` - Git & LazyGit
 | Key | Description |
 |-----|-------------|
-| `gs` | Git status |
-| `gb` | Git blame |
-| `gd` | Git diff |
-| `gc` | Git commits |
+| `gg` | LazyGit (visual git interface) |
+| `gf` | LazyGit current file |
+| `gF` | LazyGit filter (project) |
+| `gs` | Git status (future) |
+| `gb` | Git blame (future) |
+| `gd` | Git diff (future) |
+| `gc` | Git commits (future) |
 
 #### `<leader>gh` - Git Hunks (Gitsigns)
 | Key | Description |
@@ -630,7 +637,7 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `wo` | Window close others |
 | `w=` | Window balance |
 
-#### `<leader>t` - Toggle
+#### `<leader>t` - Toggle/Terminal
 | Key | Description |
 |-----|-------------|
 | `tn` | Toggle relative numbers |
@@ -642,6 +649,12 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `tv` | Toggle diagnostics virtual text (on/off) |
 | `tV` | Cycle diagnostic modes (Hidden → Errors only → Warnings+ → All) |
 | `tD` | Toggle all diagnostics (completely disable/enable) |
+| `tf` | Terminal float (90% width/height) |
+| `th` | Terminal horizontal (bottom split) |
+| `tv` | Terminal vertical (right split) |
+| `tp` | Terminal Python REPL |
+| `tn` | Terminal Node REPL |
+| `tr` | Terminal run current file |
 
 #### `<leader>s` - Search & Replace (Spectre)
 | Key | Description |
@@ -681,6 +694,7 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 |-----|-------------|
 | `<leader>u` | Toggle undotree |
 | `<leader>jt` | Flash Treesitter |
+| `<C-\>` | Toggle terminal (works in all modes) |
 
 ### Snippet Navigation
 

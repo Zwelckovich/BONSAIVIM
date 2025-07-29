@@ -120,3 +120,11 @@
 - **Implementation**: Check vim.fn.argc(-1) == 0 before restoring
 - **Location**: Sessions stored in stdpath("data") .. "/sessions/"
 - **Exclusions**: Successfully excludes help, quickfix, terminal, and temporary buffers
+
+### LazyGit.nvim Integration
+- **Date**: 2025-07-29
+- **Discovery**: toggleterm.nvim and lazygit.nvim both provide lazygit commands
+- **Conflict**: Both plugins tried to provide the same LazyGit terminal functionality
+- **Solution**: Removed toggleterm's lazygit integration in favor of dedicated lazygit.nvim plugin
+- **Benefits**: Better gitsigns integration, proper window configuration, dedicated keymaps
+- **Configuration**: 90% floating window size as per BONSAI concept.md requirements

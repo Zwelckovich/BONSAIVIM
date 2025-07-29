@@ -16,6 +16,7 @@ Thumbs.db
 lazy-lock.json
 config/.local/
 config/.cache/
+lazygit.yml
 
 # IDE
 .vscode/
