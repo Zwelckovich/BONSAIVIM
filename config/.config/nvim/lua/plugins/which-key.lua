@@ -83,6 +83,7 @@ return {
 			{ "<leader>j", group = "jump" },
 			{ "<leader>m", group = "markdown" },
 			{ "<leader>mp", desc = "Toggle markdown preview" },
+			{ "<leader>mr", desc = "Toggle markdown rendering" },
 			{ "<leader>p", group = "persistence" },
 			{ "<leader>q", group = "quit" },
 			{ "<leader>s", group = "search" },

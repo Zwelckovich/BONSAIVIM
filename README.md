@@ -658,6 +658,36 @@ Beautiful BONSAI-themed startup dashboard with:
 - Performance-optimized with lazy loading
 - Comprehensive test coverage (33 tests)
 
+## Phase 18: In-Editor Markdown Rendering - render-markdown.nvim (Complete)
+
+Beautiful markdown rendering directly in Neovim with BONSAI themes:
+
+**Features**:
+- **📑 Heading Styles**: BONSAI-themed H1-H6 with icons and backgrounds
+- **💻 Code Blocks**: Syntax highlighting with borders and language indicators
+- **✅ Lists & Checkboxes**: Custom bullets and checkbox icons
+- **📊 Tables**: Rounded borders with header highlighting
+- **🔗 Links**: Blue underlined with icons for web/email links
+- **📝 Callouts**: Note, tip, important, warning, caution with icons
+- **🧮 LaTeX Math**: Rendered inline and block math expressions
+- **🎨 BONSAI Colors**: Complete integration with BONSAI color system
+- **⚡ Performance**: Optimized for large files with concealment
+
+**Usage**:
+- `<leader>mr` - Toggle markdown rendering on/off
+- Automatic rendering in normal mode
+- Raw markdown preserved in insert mode
+
+**Highlights**:
+- 33 custom highlight groups for all markdown elements
+- Semantic coloring matching BONSAI design principles
+- Proper contrast for extended reading sessions
+
+**Configuration**:
+- `lua/plugins/render-markdown.lua` - Complete BONSAI-themed setup
+- Works alongside markdown-preview.nvim for external preview
+- Comprehensive test coverage (53 tests)
+
 ## 🔧 Troubleshooting
 
 ### Formatters Not Working
@@ -869,6 +899,7 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 |-----|-------------|
 | `<leader>u` | Toggle undotree |
 | `<leader>mp` | Toggle markdown preview |
+| `<leader>mr` | Toggle markdown rendering |
 | `<leader>jt` | Flash Treesitter |
 | `<C-\>` | Toggle terminal (works in all modes) |
 
