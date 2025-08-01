@@ -236,6 +236,7 @@ See [USAGE.md](USAGE.md) for all running options.
 - **📊 Git Integration**: Gitsigns with hunk navigation and inline blame + LazyGit visual interface
 - **⌨️ German Keyboard**: Full support with `ö` → `[`, `ä` → `]`
 - **🔤 Text Manipulation**: nvim-surround for efficient editing of quotes, brackets, and tags
+- **📊 Table Editing**: vim-table-mode for efficient markdown table creation and editing
 - **🎯 Minimal Philosophy**: Every plugin has a clear purpose
 
 ## Testing
@@ -841,6 +842,7 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `ghD` | Diff this ~ |
 | `ghn` | Next hunk |
 | `ghN` | Previous hunk |
+| `ghT` | Toggle deleted lines |
 
 #### `<leader>b` - Buffers
 | Key | Description |
@@ -884,16 +886,15 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `wo` | Window close others |
 | `w=` | Window balance |
 
-#### `<leader>t` - Toggle/Terminal
+#### `<leader>t` - Toggle/Terminal/Table
 | Key | Description |
 |-----|-------------|
-| `tn` | Toggle relative numbers |
+| `tN` | Toggle relative numbers |
 | `tw` | Toggle wrap |
 | `ts` | Toggle spell |
-| `th` | Toggle highlight search |
+| `tH` | Toggle highlight search |
 | `tb` | Toggle git blame |
-| `td` | Toggle deleted lines |
-| `tv` | Toggle diagnostics virtual text (on/off) |
+| `td` | Toggle diagnostics virtual text (on/off) |
 | `tV` | Cycle diagnostic modes (Hidden → Errors only → Warnings+ → All) |
 | `tD` | Toggle all diagnostics (completely disable/enable) |
 | `tf` | Terminal float (90% width/height) |
@@ -902,6 +903,12 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `tp` | Terminal Python REPL |
 | `tn` | Terminal Node REPL |
 | `tr` | Terminal run current file |
+| `tm` | Toggle table mode |
+| `tt` | Tableize CSV/TSV data (visual mode) |
+| `tdd` | Delete table row |
+| `tdc` | Delete table column |
+| `tic` | Insert table column |
+| `tir` | Insert table row |
 
 #### `<leader>s` - Search & Replace (Spectre)
 | Key | Description |

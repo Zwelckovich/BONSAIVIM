@@ -145,3 +145,13 @@
 - **Recent Files**: Can filter oldfiles to show only current directory files using vim.startswith()
 - **Highlights**: Custom highlights work with vim.api.nvim_set_hl() for BONSAI colors
 - **Layout**: Uses nested table structure with type = "group" for dynamic content sections
+
+### vim-table-mode Plugin
+- **Date**: 2025-08-01
+- **Discovery**: vim-table-mode integrated for markdown table editing
+- **Keybinding Conflicts**: Resolved by moving tN/tH to keymaps.lua, ghT to gitsigns.lua
+- **Testing**: Headless mode tests fail due to lazy.nvim limitations (known issue)
+- **Solution**: Plugin works correctly, verify with verify_plugins.lua instead
+- **Configuration**: Uses [t/]t/[T/]T for navigation, atc/itc for text objects
+- **Formatting**: stylua available globally at /usr/bin/stylua
+- **Linting**: luacheck available globally at /usr/bin/luacheck

@@ -147,11 +147,37 @@ else
 	failed = failed + 1
 end
 
+-- Test table-mode (Vimscript plugin)
+-- Force load table-mode first since it's lazy loaded on filetype
+local lazy = require("lazy")
+lazy.load({ plugins = { "vim-table-mode" } })
+vim.wait(500)
+
+local table_mode_ok = vim.fn.exists(":TableModeToggle") == 2
+if table_mode_ok then
+	print("✓ Table-mode loaded successfully")
+	passed = passed + 1
+else
+	print("✗ Table-mode failed to load: command not found")
+	failed = failed + 1
+end
+
 -- Special test for undotree (Vimscript plugin with lazy loading)
 -- Force load undotree first since it's lazy loaded on key press
-local lazy = require("lazy")
 lazy.load({ plugins = { "undotree" } })
 vim.wait(500)
+
+print("\n=== Testing table-mode ===")
+lazy.load({ plugins = { "vim-table-mode" } })
+vim.wait(100)
+local table_mode_ok = vim.fn.exists(":TableModeToggle") == 2
+if table_mode_ok then
+	print("✓ Table-mode loaded successfully")
+	passed = passed + 1
+else
+	print("✗ Table-mode failed to load: command not found")
+	failed = failed + 1
+end
 
 local undotree_ok = vim.fn.exists(":UndotreeToggle") == 2
 if undotree_ok then

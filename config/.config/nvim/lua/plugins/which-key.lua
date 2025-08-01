@@ -79,6 +79,7 @@ return {
 			{ "<leader>gg", desc = "LazyGit" },
 			{ "<leader>gf", desc = "LazyGit current file" },
 			{ "<leader>gF", desc = "LazyGit filter (project)" },
+			{ "<leader>ghT", desc = "Toggle deleted (gitsigns)" },
 			{ "<leader>h", group = "harpoon" },
 			{ "<leader>j", group = "jump" },
 			{ "<leader>m", group = "markdown" },
@@ -87,7 +88,7 @@ return {
 			{ "<leader>p", group = "persistence" },
 			{ "<leader>q", group = "quit" },
 			{ "<leader>s", group = "search" },
-			{ "<leader>t", group = "toggle/terminal" },
+			{ "<leader>t", group = "toggle/terminal/table" },
 			{ "<leader>w", group = "window" },
 			{ "<leader>x", group = "execute" },
 			{ "<leader>y", group = "yazi" },
@@ -156,6 +157,21 @@ return {
 			{ "<leader>tp", desc = "Terminal Python REPL" },
 			{ "<leader>tn", desc = "Terminal Node REPL" },
 			{ "<leader>tr", desc = "Terminal run current file" },
+
+			-- Toggle operations (mappings defined in keymaps.lua)
+			{ "<leader>tN", desc = "Toggle relative numbers" },
+			{ "<leader>tw", desc = "Toggle line wrap" },
+			{ "<leader>ts", desc = "Toggle spell check" },
+			{ "<leader>tH", desc = "Toggle search highlight" },
+			{ "<leader>tc", desc = "Cycle colorschemes" },
+
+			-- Table mode operations (mappings defined in table-mode.lua)
+			{ "<leader>tm", desc = "Toggle table mode" },
+			{ "<leader>tt", desc = "Tableize CSV/TSV data" },
+			{ "<leader>tdd", desc = "Delete table row" },
+			{ "<leader>tdc", desc = "Delete table column" },
+			{ "<leader>tic", desc = "Insert table column" },
+			{ "<leader>tir", desc = "Insert table row" },
 		})
 	end,
 }

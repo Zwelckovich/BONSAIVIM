@@ -187,17 +187,25 @@ autocmd("BufReadPost", {
 -- Faster startup by delaying some plugin loading
 local startup_group = augroup("BonsaiStartup", { clear = true })
 
--- Load BONSAI colorscheme after UI enters
+-- Load colorscheme after UI enters
 autocmd("UIEnter", {
   group = startup_group,
   once = true,
   callback = function()
-    -- Apply BONSAI colors
-    require("bonsai.colors").setup()
-
     -- Set vim options that affect appearance
     vim.opt.termguicolors = true
-    vim.g.colors_name = "bonsai"
+
+    -- Check for user's colorscheme preference (can be set in local config)
+    local preferred_theme = vim.g.bonsai_colorscheme or "bonsai"
+    
+    if preferred_theme == "bonsai" then
+      -- Apply BONSAI colors
+      require("bonsai.colors").setup()
+      vim.g.colors_name = "bonsai"
+    else
+      -- Apply user's preferred colorscheme
+      vim.cmd.colorscheme(preferred_theme)
+    end
   end,
 })
 

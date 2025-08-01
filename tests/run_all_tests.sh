@@ -79,6 +79,10 @@ if [ -f "tests/run_zen_mode_phase19_tests.sh" ]; then
 	run_test_suite "Phase 19: Zen-Mode Tests" "tests/run_zen_mode_phase19_tests.sh"
 fi
 
+if [ -f "tests/run_table_mode_tests.sh" ]; then
+	run_test_suite "Phase 20: Table-Mode Tests" "tests/run_table_mode_tests.sh"
+fi
+
 # Additional test scripts
 if [ -f "tests/test_config.sh" ]; then
 	run_test_suite "Config Load Tests" "tests/test_config.sh"
