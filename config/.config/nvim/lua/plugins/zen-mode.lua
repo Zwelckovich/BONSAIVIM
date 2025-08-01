@@ -10,7 +10,7 @@ return {
     opts = {
         window = {
             backdrop = 0.95, -- Shade of the backdrop (lower is darker)
-            width = 80, -- Width of the zen window (60-80 characters as requested)
+            width = 0.75, -- Width of the zen window (75% of window width)
             height = 1, -- Height of the zen window (1 = full height)
             options = {
                 -- Settings that apply when entering zen mode

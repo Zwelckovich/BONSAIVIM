@@ -704,7 +704,7 @@ Distraction-free writing mode for focused work with BONSAI aesthetics:
 
 **Zen Mode Options**:
 - Backdrop shade: 95% (subtle darkening)
-- Window width: 80 characters
+- Window width: 75% of window width
 - Full height window
 - Hides: line numbers, sign column, cursor line, fold column
 - Special markdown settings: wrap and linebreak enabled
