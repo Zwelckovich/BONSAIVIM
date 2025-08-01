@@ -198,6 +198,15 @@ autocmd("UIEnter", {
     -- Check for user's colorscheme preference (can be set in local config)
     local preferred_theme = vim.g.bonsai_colorscheme or "bonsai"
     
+    -- Set the theme index based on preferred theme
+    local themes = { "bonsai", "tokyonight", "catppuccin", "nightfox" }
+    for i, theme in ipairs(themes) do
+      if theme == preferred_theme then
+        vim.g.bonsai_theme_index = i
+        break
+      end
+    end
+    
     if preferred_theme == "bonsai" then
       -- Apply BONSAI colors
       require("bonsai.colors").setup()

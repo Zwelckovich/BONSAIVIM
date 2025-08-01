@@ -137,6 +137,15 @@
 - **Solution**: Test for get_rules function existence rather than checking rule contents
 - **Takeaway**: Internal implementation details may differ from expected behavior
 
+### Colorscheme Cycling
+- **Date**: 2025-08-01
+- **Discovery**: vim.g.colors_name isn't reliably updated when switching colorschemes programmatically
+- **Issue**: Cycling through colorschemes would stop working after first switch
+- **Reason**: vim.cmd.colorscheme() doesn't always update vim.g.colors_name to match expected theme name
+- **Solution**: Use global index tracker (vim.g.bonsai_theme_index) instead of relying on vim.g.colors_name
+- **Implementation**: Track current position in theme array independently of colorscheme name
+- **Result**: Reliable cycling through all available colorschemes
+
 ### Alpha-nvim Startup Screen
 - **Date**: 2025-08-01
 - **Discovery**: Alpha-nvim works well for custom startup screens with lazy.nvim

@@ -60,3 +60,10 @@ To add more colorschemes, edit `lua/plugins/colorschemes.lua` and add your favor
 - Other themes will work but may not have perfect integration with all UI elements
 - You can always return to BONSAI by pressing `<leader>tc` until it appears
 - Your theme preference persists only for the current session unless you set `vim.g.bonsai_colorscheme`
+
+## Troubleshooting
+
+If colorscheme cycling stops working:
+- The cycling uses an index tracker to reliably switch between themes
+- The order is: bonsai → tokyonight → catppuccin → nightfox → (back to bonsai)
+- If a colorscheme fails to load, it will reset to BONSAI and notify you

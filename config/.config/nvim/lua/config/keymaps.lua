@@ -121,22 +121,18 @@ map("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
 -- File explorer: use <leader>yy for yazi (netrw is disabled)
 
 -- Colorscheme switching
+-- Store current theme index globally to track state properly
+vim.g.bonsai_theme_index = vim.g.bonsai_theme_index or 1
+
 map("n", "<leader>tc", function()
 	-- List of available colorschemes
 	local themes = { "bonsai", "tokyonight", "catppuccin", "nightfox" }
-	local current = vim.g.colors_name or "bonsai"
 	
-	-- Find current theme index
-	local current_idx = 1
-	for i, theme in ipairs(themes) do
-		if theme == current then
-			current_idx = i
-			break
-		end
-	end
-	
-	-- Cycle to next theme
+	-- Get current index and cycle to next
+	local current_idx = vim.g.bonsai_theme_index or 1
 	local next_idx = (current_idx % #themes) + 1
+	vim.g.bonsai_theme_index = next_idx
+	
 	local next_theme = themes[next_idx]
 	
 	-- Apply the theme
@@ -144,7 +140,16 @@ map("n", "<leader>tc", function()
 		require("bonsai.colors").setup()
 		vim.g.colors_name = "bonsai"
 	else
-		vim.cmd.colorscheme(next_theme)
+		-- Ensure the colorscheme is loaded
+		local ok, _ = pcall(vim.cmd.colorscheme, next_theme)
+		if not ok then
+			vim.notify("Failed to load colorscheme: " .. next_theme, vim.log.levels.ERROR)
+			-- Reset to bonsai on failure
+			vim.g.bonsai_theme_index = 1
+			require("bonsai.colors").setup()
+			vim.g.colors_name = "bonsai"
+			return
+		end
 	end
 	
 	vim.notify("Colorscheme: " .. next_theme, vim.log.levels.INFO)
