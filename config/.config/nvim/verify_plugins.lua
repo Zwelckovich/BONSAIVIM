@@ -140,6 +140,13 @@ else
 	failed = failed + 1
 end
 
+-- Test zen-mode
+if test_plugin("Zen-mode", "zen-mode") then
+	passed = passed + 1
+else
+	failed = failed + 1
+end
+
 -- Special test for undotree (Vimscript plugin with lazy loading)
 -- Force load undotree first since it's lazy loaded on key press
 local lazy = require("lazy")

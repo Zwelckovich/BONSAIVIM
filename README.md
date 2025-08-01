@@ -688,6 +688,48 @@ Beautiful markdown rendering directly in Neovim with BONSAI themes:
 - Works alongside markdown-preview.nvim for external preview
 - Comprehensive test coverage (53 tests)
 
+## Phase 19: Zen Mode - zen-mode.nvim (Complete)
+
+Distraction-free writing mode for focused work with BONSAI aesthetics:
+
+**Features**:
+- **🧘 Distraction-Free**: Hide all UI elements (statusline, numbers, signs)
+- **📏 Centered View**: 80-character width centered window
+- **🌒 Code Dimming**: Twilight integration dims inactive code with BONSAI colors
+- **📝 Auto-Enable**: Optional auto-enable for markdown/text files
+- **🖥️ Terminal Support**: Optional tmux statusline hiding
+- **⌨️ Simple Toggle**: `<leader>zz` to enter/exit zen mode
+
+### Key Features
+
+**Zen Mode Options**:
+- Backdrop shade: 95% (subtle darkening)
+- Window width: 80 characters
+- Full height window
+- Hides: line numbers, sign column, cursor line, fold column
+- Special markdown settings: wrap and linebreak enabled
+
+**Twilight Integration**:
+- Dims inactive code regions
+- Uses BONSAI text_muted color for dimmed text
+- Maintains BONSAI text_primary for active region
+- 10-line context around cursor
+- Treesitter-aware dimming
+
+### Keybindings
+
+| Keybinding | Description |
+|------------|-------------|
+| `<leader>zz` | Toggle zen mode |
+
+### What's New in Phase 19
+
+- `lua/plugins/zen-mode.lua` - Complete zen-mode configuration
+- Twilight.nvim dependency for code dimming
+- BONSAI color integration for all UI elements
+- Optional auto-enable for markdown/text files (commented out by default)
+- Comprehensive test coverage (30 tests)
+
 ## 🔧 Troubleshooting
 
 ### Formatters Not Working

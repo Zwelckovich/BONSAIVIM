@@ -91,6 +91,7 @@ return {
 			{ "<leader>w", group = "window" },
 			{ "<leader>x", group = "execute" },
 			{ "<leader>y", group = "yazi" },
+			{ "<leader>z", group = "zen" },
 		})
 
 		-- Register descriptions for existing mappings (don't duplicate the mappings)

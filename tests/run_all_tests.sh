@@ -71,6 +71,14 @@ if [ -f "tests/run_phase9_tests.sh" ]; then
 	run_test_suite "Phase 9: Colorscheme & Final Polish Tests" "tests/run_phase9_tests.sh"
 fi
 
+if [ -f "tests/run_render_markdown_tests.sh" ]; then
+	run_test_suite "Phase 18: Render-Markdown Tests" "tests/run_render_markdown_tests.sh"
+fi
+
+if [ -f "tests/run_zen_mode_phase19_tests.sh" ]; then
+	run_test_suite "Phase 19: Zen-Mode Tests" "tests/run_zen_mode_phase19_tests.sh"
+fi
+
 # Additional test scripts
 if [ -f "tests/test_config.sh" ]; then
 	run_test_suite "Config Load Tests" "tests/test_config.sh"
