@@ -223,6 +223,7 @@ See [USAGE.md](USAGE.md) for all running options.
 
 - **🚀 Lightning Fast**: ~26ms startup time (well under 50ms target)
 - **🎨 BONSAI Colorscheme**: Custom dark zen color palette with semantic highlighting
+- **🌱 Beautiful Startup Screen**: Custom BONSAI dashboard with recent files, quick actions, and zen quotes
 - **📝 Complete Language Support**: LSP for Python, JavaScript/TypeScript, Tailwind CSS, HTML, Markdown
 - **🔍 Powerful Navigation**: Telescope fuzzy finder, Flash jump-to-char, Undotree visualization
 - **🎯 Quick File Access**: Harpoon for instant navigation to frequently used files
@@ -256,13 +257,14 @@ Run the comprehensive test suite to verify your installation:
 ./tests/run_spectre_tests.sh   # Standalone spectre functionality tests
 ./tests/run_toggleterm_tests.sh # Terminal integration tests
 ./tests/run_lazygit_tests.sh   # LazyGit visual git interface tests
+./tests/run_alpha_tests.sh     # Startup screen functionality tests
 ```
 
 ### What the Tests Verify
 
 - ✅ **Startup Performance**: Confirms <50ms startup time
 - ✅ **Configuration Loading**: All modules load without errors
-- ✅ **Plugin Functionality**: All plugins load and function correctly (19 active plugins)
+- ✅ **Plugin Functionality**: All plugins load and function correctly (23 active plugins)
 - ✅ **LSP Integration**: Language servers install and work properly
 - ✅ **Formatting**: Code formatting works for all configured languages
 - ✅ **Colorscheme**: BONSAI colors apply correctly to all UI elements
@@ -628,6 +630,33 @@ Live markdown preview with BONSAI-styled dark theme:
 - Only available for markdown files
 - Uses system default browser
 - Custom BONSAI color scheme for all elements
+
+## Phase 17: Custom Startup Screen - alpha-nvim (Complete)
+
+Beautiful BONSAI-themed startup dashboard with:
+
+**Features**:
+- **🌱 ASCII Art**: Minimal 6-line bonsai tree artwork
+- **💭 Zen Quotes**: Rotating inspirational quotes about growth and simplicity
+- **📊 Statistics**: Plugin count and startup time display
+- **📂 Recent Files**: Last 5 files from current directory with icons
+- **⚡ Quick Actions**: Single-key shortcuts for common tasks:
+  - `n` - New file
+  - `f` - Find files (Telescope)
+  - `r` - Recent files (Telescope)
+  - `g` - Find text (grep)
+  - `c` - Configuration
+  - `s` - Restore session
+  - `l` - Lazy plugin manager
+  - `m` - Mason LSP manager
+  - `q` - Quit
+- **🎨 BONSAI Colors**: All elements use the BONSAI color palette
+
+**What's New**:
+- `lua/plugins/alpha.lua` - Complete startup screen configuration
+- Dynamic recent files section showing project context
+- Performance-optimized with lazy loading
+- Comprehensive test coverage (33 tests)
 
 ## 🔧 Troubleshooting
 

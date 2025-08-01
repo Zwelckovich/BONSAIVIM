@@ -30,6 +30,7 @@ plugin_test_results.txt
 plugin_test_output.txt
 test_results.txt
 lsp_test_results.txt
+alpha_test_results.txt
 
 # Test documentation and temporary files
 TELESCOPE_LAYOUT.md

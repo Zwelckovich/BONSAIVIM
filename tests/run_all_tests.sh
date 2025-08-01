@@ -55,6 +55,10 @@ if [ -f "tests/run_lazygit_tests.sh" ]; then
 	run_test_suite "LazyGit Tests" "tests/run_lazygit_tests.sh"
 fi
 
+if [ -f "tests/run_alpha_tests.sh" ]; then
+	run_test_suite "Alpha Startup Screen Tests" "tests/run_alpha_tests.sh"
+fi
+
 if [ -f "tests/run_phase7_tests.sh" ]; then
 	run_test_suite "Phase 7: Lualine & Undotree Tests" "tests/run_phase7_tests.sh"
 fi

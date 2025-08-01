@@ -136,3 +136,12 @@
 - **Behavior**: Custom rules still function correctly despite not appearing in get_rules()
 - **Solution**: Test for get_rules function existence rather than checking rule contents
 - **Takeaway**: Internal implementation details may differ from expected behavior
+
+### Alpha-nvim Startup Screen
+- **Date**: 2025-08-01
+- **Discovery**: Alpha-nvim works well for custom startup screens with lazy.nvim
+- **Testing**: Startup time test returns 0 in headless mode (expected, normal behavior)
+- **Integration**: Successfully integrates with telescope, persistence, and nvim-web-devicons
+- **Recent Files**: Can filter oldfiles to show only current directory files using vim.startswith()
+- **Highlights**: Custom highlights work with vim.api.nvim_set_hl() for BONSAI colors
+- **Layout**: Uses nested table structure with type = "group" for dynamic content sections
