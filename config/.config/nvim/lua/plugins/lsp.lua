@@ -31,6 +31,7 @@ return {
         "pyright",                    -- Python
         "ts_ls",                      -- TypeScript/JavaScript (new name for typescript-language-server)
         "tailwindcss",                -- Tailwind CSS
+        "ruff",                       -- An extremely fast Python linter and code formatter, written in Rust.
       },
       automatic_enable = true,  -- Auto-enable installed servers
     }
