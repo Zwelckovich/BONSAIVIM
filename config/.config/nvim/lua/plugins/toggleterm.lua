@@ -75,6 +75,24 @@ return {
 		},
 	},
 	config = function(_, opts)
+		-- Windows PowerShell configuration
+		if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+			-- Check for PowerShell Core first, then fall back to Windows PowerShell
+			local shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell"
+
+			-- Set shell options for PowerShell
+			vim.opt.shell = shell
+			vim.opt.shellcmdflag =
+				"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+			vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+			vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+			vim.opt.shellquote = ""
+			vim.opt.shellxquote = ""
+
+			-- Override opts.shell for toggleterm to use PowerShell
+			opts.shell = shell
+		end
+
 		require("toggleterm").setup(opts)
 
 		-- Custom terminal functions for common tasks
