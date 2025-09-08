@@ -1695,14 +1695,20 @@ Examples:
 - **Testing**: pytest + hypothesis (when complexity justifies)
 - **Coverage**: coverage.py + pytest-cov (test coverage analysis and reporting)
 - **Data Validation**: pydantic (type-safe data models and validation)
-- **Data Processing**: pandas (for data manipulation and analysis)
+- **Data Processing**: polars (fast, memory-efficient dataframe library with lazy evaluation)
+- **Data Processing Fallback**: pandas (for special operations not yet in polars, e.g., HDF5, Excel with complex formatting)
 - **Web Scraping**: requests_html2 (modern web scraping with JavaScript support)
 - **CLI Tools**: typer (modern, type-safe CLI framework)
 - **Terminal UIs**: textual (BONSAI-styled terminal user interfaces)
 - **Progress Bars**: tqdm (CLI progress indicators with BONSAI colors)
 - **Logging**: loguru (beautiful, structured logging with BONSAI colors)
-- **Data Cleaning**: janitor (pandas dataframe cleaning utilities)
+- **Data Cleaning**: janitor (dataframe cleaning utilities, use with pandas then convert to polars)
 - **Console Output**: rich (beautiful terminal output, panels, tables)
+- **Shell Commands**: sh (execute shell commands as Python functions)
+- **Nested Data Access**: glom (pythonic path-based access to nested data structures)
+- **Utility Collection**: boltons (over 250 BSD-licensed pure Python utilities)
+- **Date Parsing**: dateparser (parse human-readable dates in any language)
+- **Debug Printing**: icecream (sweet and colorful debugging with minimal code)
 
 #### Ruff Philosophy
 
@@ -2417,6 +2423,47 @@ if __name__ == "__main__":
     else:
         logger.error("🚨 Tests or coverage requirements not met")
         sys.exit(1)
+```
+
+#### Polars with Pandas Fallback
+
+```python
+# BONSAI approach: Use polars as primary, pandas for special cases
+import polars as pl
+import pandas as pd
+
+# Primary data processing with polars (fast, memory-efficient)
+df = pl.read_csv("data.csv")
+result = (
+    df.lazy()
+    .filter(pl.col("value") > 100)
+    .group_by("category")
+    .agg([
+        pl.col("value").mean().alias("avg_value"),
+        pl.col("value").sum().alias("total_value")
+    ])
+    .sort("avg_value", descending=True)
+    .collect()
+)
+
+# Special case: HDF5 files (not yet supported in polars)
+pd_df = pd.read_hdf("legacy_data.h5")
+pl_df = pl.from_pandas(pd_df)  # Convert to polars for processing
+
+# Special case: Complex Excel with formatting
+pd_df = pd.read_excel("complex.xlsx", sheet_name="Sheet1", header=[0, 1])
+pl_df = pl.from_pandas(pd_df)
+
+# If needed, convert back to pandas for specific operations
+pl_df = pl.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
+pd_df = pl_df.to_pandas()  # For pandas-only operations
+result_df = pl.from_pandas(pd_df)  # Back to polars
+
+# Janitor example with polars conversion
+import janitor
+pd_df = pd.read_csv("messy_data.csv")
+cleaned_pd = pd_df.clean_names().remove_empty()
+pl_df = pl.from_pandas(cleaned_pd)  # Continue with polars
 ```
 
 ### Framework-Specific Minimal Structures
@@ -3596,7 +3643,7 @@ When adding new tools:
 
 - **SQL Database**: SQLite (file-based, zero-config, cross-platform)
 - **NoSQL/Document**: Start with JSON files, move to SQLite when relationships needed
-- **Data Analysis**: Use pandas for data manipulation before/after database operations
+- **Data Analysis**: Use polars for data manipulation before/after database operations
 
 ### Cross-Platform Considerations
 

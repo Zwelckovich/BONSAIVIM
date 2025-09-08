@@ -71,6 +71,10 @@ return {
 
 			-- Conform formatter info
 			{ "<leader>cI", "<cmd>ConformInfo<cr>", desc = "Show formatter info" },
+
+			-- Mason LSP server management
+			{ "<leader>cm", desc = "Open Mason" },
+			{ "<leader>cM", desc = "Mason Log" },
 			{ "<leader>f", group = "find" },
 			{ "<leader>g", group = "git" },
 			{ "<leader>gh", group = "git hunks" },
@@ -89,6 +93,7 @@ return {
 			{ "<leader>q", group = "quit" },
 			{ "<leader>s", group = "search" },
 			{ "<leader>t", group = "toggle/terminal/table" },
+			{ "<leader>tc", desc = "Toggle colorizer" },
 			{ "<leader>w", group = "window" },
 			{ "<leader>x", group = "execute" },
 			{ "<leader>y", group = "yazi" },
