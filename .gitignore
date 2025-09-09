@@ -38,3 +38,6 @@ TELESCOPE_LAYOUT.md
 test_ruff.py
 test_ruff_manual.sh
 test_ruff_diagnostic.vim
+test.typ
+test.pdf
+test_format.typ

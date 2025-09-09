@@ -57,11 +57,78 @@ return {
 				follow_cursor = true,
 			})
 
+			-- Custom function to clean up extra spaces in Typst content
+			local function clean_typst_spaces()
+				local bufnr = vim.api.nvim_get_current_buf()
+				local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+				local modified = false
+				local in_code_block = false
+				local in_math_block = false
+				
+				for i, line in ipairs(lines) do
+					-- Check for code block boundaries
+					if line:match("^```") then
+						in_code_block = not in_code_block
+					elseif line:match("^%$") and not line:match("^%$.*%$$") then
+						-- Start of multi-line math block
+						in_math_block = not in_math_block
+					end
+					
+					-- Determine if current line should be processed
+					local should_process = true
+					
+					if in_code_block or in_math_block then
+						should_process = false
+					elseif line:match("^%s*#set%s") or      -- #set rules
+					       line:match("^%s*#let%s") or      -- #let functions
+					       line:match("^%s*#import%s") or    -- #import statements
+					       line:match("^%s*#include%s") or   -- #include statements
+					       line:match("^%s*//") then         -- Comments
+						should_process = false
+					end
+					
+					-- Process the line if it's content (not code)
+					if should_process and line ~= "" then
+						-- Replace multiple consecutive spaces with single space
+						-- Use a simpler pattern that works globally
+						local new_line = line:gsub("%s%s+", " ")
+						-- Also clean up trailing spaces
+						new_line = new_line:gsub("%s+$", "")
+						-- Clean up leading spaces (optional, you may want to keep indentation)
+						-- new_line = new_line:gsub("^%s+", "")
+						
+						if new_line ~= line then
+							lines[i] = new_line
+							modified = true
+						end
+					end
+				end
+				
+				if modified then
+					vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+					vim.notify("Cleaned up extra spaces in content", vim.log.levels.INFO)
+				else
+					vim.notify("No extra spaces found in content", vim.log.levels.INFO)
+				end
+			end
+
 			-- Keymaps for Typst files
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "typst",
 				callback = function()
 					local opts = { buffer = true, silent = true }
+
+					-- Clean up spaces in content (custom formatter for text)
+					vim.keymap.set("n", "<leader>cs", clean_typst_spaces, 
+						vim.tbl_extend("error", opts, { desc = "Clean spaces in Typst content" }))
+					
+					-- Format all: First LSP format for code, then clean spaces in content
+					vim.keymap.set("n", "<leader>cF", function()
+						-- First format code with LSP
+						vim.lsp.buf.format({ async = false })
+						-- Then clean up content spaces
+						vim.defer_fn(clean_typst_spaces, 100)
+					end, vim.tbl_extend("error", opts, { desc = "Format Typst completely (code + content)" }))
 
 					-- Browser preview commands (using capital T for Typst)
 					vim.keymap.set(

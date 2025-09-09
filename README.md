@@ -224,7 +224,7 @@ See [USAGE.md](USAGE.md) for all running options.
 - **🚀 Lightning Fast**: ~26ms startup time (well under 50ms target)
 - **🎨 BONSAI Colorscheme**: Custom dark zen color palette with semantic highlighting
 - **🌱 Beautiful Startup Screen**: Custom BONSAI dashboard with recent files, quick actions, and zen quotes
-- **📝 Complete Language Support**: LSP for Python, JavaScript/TypeScript, Tailwind CSS, HTML, Markdown
+- **📝 Complete Language Support**: LSP for Python, JavaScript/TypeScript, Tailwind CSS, HTML, Markdown, Typst
 - **🔍 Powerful Navigation**: Telescope fuzzy finder, Flash jump-to-char, Undotree visualization
 - **🎯 Quick File Access**: Harpoon for instant navigation to frequently used files
 - **🗂️ Buffer Tabs**: Visual buffer tabs like browser tabs with bufferline

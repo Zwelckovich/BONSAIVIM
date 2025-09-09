@@ -46,12 +46,15 @@ return {
 
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
+      
+      -- Ignore these file types for auto-install (no parser available)
+      ignore_install = { "typst" },
 
       highlight = {
         enable = true,
-        -- Disable for large files
+        -- Disable for large files and unsupported languages
         disable = function(lang, buf)
-          return vim.b[buf].large_file
+          return vim.b[buf].large_file or lang == "typst"
         end,
         -- Disable slow treesitter highlight for large files
         additional_vim_regex_highlighting = false,
@@ -60,7 +63,7 @@ return {
       indent = {
         enable = true,
         disable = function(lang, buf)
-          return vim.b[buf].large_file
+          return vim.b[buf].large_file or lang == "typst"
         end,
       },
 
