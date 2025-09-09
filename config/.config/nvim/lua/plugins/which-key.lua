@@ -72,6 +72,10 @@ return {
 			-- Conform formatter info
 			{ "<leader>cI", "<cmd>ConformInfo<cr>", desc = "Show formatter info" },
 
+			-- Typst-specific code operations (only in .typ files)
+			{ "<leader>cs", desc = "Clean spaces in Typst content (Typst files only)" },
+			{ "<leader>cF", desc = "Format Typst completely - code + content (Typst files only)" },
+
 			-- Mason LSP server management
 			{ "<leader>cm", desc = "Open Mason" },
 			{ "<leader>cM", desc = "Mason Log" },
@@ -93,6 +97,7 @@ return {
 			{ "<leader>q", group = "quit" },
 			{ "<leader>s", group = "search" },
 			{ "<leader>t", group = "toggle/terminal/table" },
+			{ "<leader>T", group = "Typst" },
 			{ "<leader>tc", desc = "Toggle colorizer" },
 			{ "<leader>w", group = "window" },
 			{ "<leader>x", group = "execute" },
@@ -177,6 +182,15 @@ return {
 			{ "<leader>tdc", desc = "Delete table column" },
 			{ "<leader>tic", desc = "Insert table column" },
 			{ "<leader>tir", desc = "Insert table row" },
+
+			-- Typst operations (mappings defined in typst.lua - only in .typ files)
+			{ "<leader>Tp", desc = "Typst Preview (browser)" },
+			{ "<leader>Tt", desc = "Toggle Typst Preview" },
+			{ "<leader>Ts", desc = "Stop Typst Preview" },
+			{ "<leader>Tz", desc = "Typst Preview in Zathura" },
+			{ "<leader>Tj", desc = "Jump to PDF in Zathura" },
+			{ "<leader>Tc", desc = "Compile Typst to PDF" },
+			{ "<leader>Tw", desc = "Typst watch mode" },
 		})
 	end,
 }
