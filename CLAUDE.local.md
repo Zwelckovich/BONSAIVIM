@@ -38,6 +38,7 @@
 - **Available**: sed for basic text manipulation
 - **Unavailable**: stylua (would need local installation)
 - **Workaround**: Use sed for trailing whitespace removal, nvim for syntax checking
+- **Update 2025-08-01**: stylua available globally at /usr/bin/stylua
 
 ## BONSAI Compliance Notes
 
@@ -99,6 +100,15 @@
 - **Reason**: Requires UI event triggers for full initialization
 - **Testing**: Module loads successfully but config application needs UI context
 - **Solution**: Test module loading and config presence, visual testing requires manual verification
+
+### Typst Formatter with Tinymist
+- **Date**: 2025-01-09
+- **Discovery**: Tinymist LSP doesn't advertise formatting capability by default
+- **Issue**: server_capabilities.documentFormattingProvider returns nil
+- **Solution**: Explicitly enable formatting in on_attach for Tinymist client
+- **Code**: `if client.name == "tinymist" then client.server_capabilities.documentFormattingProvider = true end`
+- **Keymap**: Override <leader>cf for Typst files to use vim.lsp.buf.format directly
+- **Testing**: Works in both interactive and headless mode with explicit capability enable
 
 ### Undotree Lazy Loading
 - **Date**: 2025-07-29

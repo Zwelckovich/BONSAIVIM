@@ -9,7 +9,12 @@ return {
     {
       "<leader>cf",
       function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        -- For Typst files, use LSP formatting directly since Tinymist doesn't advertise capability properly
+        if vim.bo.filetype == "typst" then
+          vim.lsp.buf.format({ async = false })
+        else
+          require("conform").format({ async = true, lsp_fallback = true })
+        end
       end,
       mode = "",
       desc = "Code format",
@@ -37,6 +42,7 @@ return {
         lua = { "stylua" },
         sh = { "shfmt" },
         bash = { "shfmt" },
+        -- typst formatting is handled by LSP directly (Tinymist)
       },
 
       -- Format on save configuration

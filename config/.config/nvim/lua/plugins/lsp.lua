@@ -37,6 +37,7 @@ return {
 				"ts_ls", -- TypeScript/JavaScript (new name for typescript-language-server)
 				"tailwindcss", -- Tailwind CSS
 				"ruff", -- An extremely fast Python linter and code formatter, written in Rust.
+				"tinymist", -- Typst language server
 			},
 			automatic_enable = true, -- Auto-enable installed servers
 		},
@@ -99,6 +100,12 @@ return {
 			local on_attach = function(client, bufnr)
 				local map = function(mode, lhs, rhs, desc)
 					vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+				end
+
+				-- Enable formatting for Tinymist explicitly
+				if client.name == "tinymist" then
+					client.server_capabilities.documentFormattingProvider = true
+					client.server_capabilities.documentRangeFormattingProvider = true
 				end
 
 				-- Navigation
@@ -170,6 +177,19 @@ return {
 
 			-- Server-specific configurations
 			local servers = {
+				tinymist = {
+					settings = {
+						exportPdf = "onType", -- Export PDF on every change
+						outputPath = "$root/$name", -- Output path for PDF
+						formatterMode = "typstyle", -- Use typstyle formatter
+						formatterPrintWidth = 120, -- Line width for formatter
+						semanticTokens = "disable", -- Disable semantic tokens (we use treesitter)
+					},
+					-- Single file mode for better compatibility
+					single_file_support = true,
+					on_attach = on_attach,
+					capabilities = capabilities,
+				},
 				pyright = {
 					settings = {
 						python = {
