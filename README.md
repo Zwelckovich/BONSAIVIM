@@ -731,6 +731,83 @@ Distraction-free writing mode for focused work with BONSAI aesthetics:
 - Optional auto-enable for markdown/text files (commented out by default)
 - Comprehensive test coverage (30 tests)
 
+## Phase 20: D2 Diagrams - terrastruct/d2-vim (Complete)
+Professional diagram-as-code support for technical documentation:
+
+### What's New - D2 Diagrams
+**Features**:
+- **🎨 Syntax Highlighting**: Full D2 language support with proper highlighting
+- **📊 Diagram Compilation**: Convert D2 code to SVG/PNG/PDF outputs
+- **👁️ Live Preview**: Watch mode for automatic recompilation on save
+- **🌐 Browser Integration**: Open rendered diagrams directly in browser
+- **📁 Multiple Formats**: Export to SVG, PNG, or PDF as needed
+
+**Key Commands**:
+- `<leader>Dc` - Compile D2 diagram to SVG
+- `<leader>Dw` - Start watch mode (auto-compile on save)
+- `<leader>Do` - Open output in browser
+- `<leader>Dp` - Export to PNG format
+- `<leader>DP` - Export to PDF format
+
+**Usage Example**:
+```d2
+# Architecture diagram
+Load Balancer -> Web Server: HTTP
+Web Server -> Database: SQL
+Web Server -> Cache: Redis
+
+Database {
+  shape: cylinder
+  style.fill: "#7c9885"
+}
+```
+
+## Phase 21: Quarto Scientific Notebooks - quarto-nvim (Complete)
+Complete scientific and technical publishing platform integration:
+
+### What's New - Quarto
+**Features**:
+- **📓 Notebook Support**: Edit and execute Quarto markdown documents (.qmd)
+- **🔬 Code Execution**: Run code cells in Python, R, Julia, and more
+- **👁️ Live Preview**: Real-time document preview with automatic updates
+- **🧪 Cell Management**: Run individual cells, selections, or entire documents
+- **📊 Output Integration**: See results inline or in preview
+- **🔍 LSP Support**: Full language server features via otter.nvim
+- **📤 Export Options**: Render to HTML, PDF, Word, and more formats
+
+**Key Commands**:
+- `<leader>Qp` - Start Quarto preview
+- `<leader>Qc` - Close preview
+- `<leader>Qr` - Run current cell
+- `<leader>Qa` - Run cell and all above
+- `<leader>QA` - Run all cells in document
+- `<leader>Ql` - Run current line
+- `<leader>QR` - Run all cells (all languages)
+- `<leader>Qs` - Send code to terminal
+- `<leader>Qi` - Activate Quarto LSP features
+- `<leader>Qd` - Show Quarto diagnostics
+
+**Usage Example**:
+```markdown
+---
+title: "Data Analysis Report"
+format: html
+---
+
+## Analysis
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Your analysis code here
+df = pd.read_csv("data.csv")
+df.describe()
+```
+
+The results show interesting patterns...
+```
+
 ## 🔧 Troubleshooting
 
 ### Formatters Not Working
@@ -1129,6 +1206,65 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 - `:Lazy` - Plugin management interface
 - `:Mason` - LSP server management
 - `:messages` - View Neovim messages
+
+### D2 Diagram Workflow
+
+**Creating Technical Diagrams**:
+1. Create a new `.d2` file for your diagram
+2. Write diagram code with syntax highlighting support
+3. `<leader>Dw` to start watch mode for live preview
+4. Edit and save - diagram auto-recompiles
+5. `<leader>Do` to view in browser when ready
+
+**Best Practices**:
+- Use BONSAI colors in diagrams: `style.fill: "#7c9885"`
+- Keep diagrams minimal and focused
+- Use watch mode during active development
+- Export to SVG for web, PNG for documents, PDF for print
+- Organize complex diagrams with containers and nested structures
+
+**Example Workflow**:
+```bash
+# Create architecture diagram
+vim architecture.d2
+# Start watch mode
+<leader>Dw
+# Edit and save iteratively
+# Export final version
+<leader>Dp  # PNG for documentation
+```
+
+### Quarto Scientific Workflow
+
+**Creating Research Documents**:
+1. Create `.qmd` file for your analysis/report
+2. Write markdown with embedded code cells
+3. `<leader>Qp` to start live preview
+4. `<leader>Qr` to run individual cells during development
+5. `<leader>QA` to run all cells for final output
+
+**Best Practices**:
+- Use code chunks with clear labels
+- Run cells incrementally during development
+- Keep data processing and visualization separate
+- Use Quarto's caching for expensive computations
+- Leverage LSP features with `<leader>Qi` for code completion
+
+**Interactive Development**:
+```markdown
+# Data exploration workflow
+1. Load data in first cell (<leader>Qr)
+2. Explore interactively (<leader>Ql for single lines)
+3. Build analysis incrementally (<leader>Qa for dependencies)
+4. Run all when complete (<leader>QA)
+5. Export to desired format via preview
+```
+
+**Tips**:
+- Use `<leader>Qs` to send code to terminal for debugging
+- `<leader>Qd` for diagnostics when cells fail
+- Preview updates automatically on save
+- Combine with Zen Mode (`<leader>zz`) for focused writing
 
 ### Daily Workflow Example
 
