@@ -98,6 +98,8 @@ return {
 			{ "<leader>s", group = "search" },
 			{ "<leader>t", group = "toggle/terminal/table" },
 			{ "<leader>T", group = "Typst" },
+			{ "<leader>D", group = "D2 diagrams" },
+			{ "<leader>Q", group = "Quarto" },
 			{ "<leader>tc", desc = "Toggle colorizer" },
 			{ "<leader>w", group = "window" },
 			{ "<leader>x", group = "execute" },
@@ -191,6 +193,27 @@ return {
 			{ "<leader>Tj", desc = "Jump to PDF in Zathura" },
 			{ "<leader>Tc", desc = "Compile Typst to PDF" },
 			{ "<leader>Tw", desc = "Typst watch mode" },
+
+			-- D2 diagram operations (mappings defined in d2.lua - only in .d2 files)
+			{ "<leader>Dc", desc = "Compile D2 to SVG" },
+			{ "<leader>Dw", desc = "D2 watch mode (auto-compile)" },
+			{ "<leader>Do", desc = "Open D2 output in browser" },
+			{ "<leader>Dp", desc = "Export D2 to PNG" },
+			{ "<leader>DP", desc = "Export D2 to PDF" },
+
+			-- Quarto operations (mappings defined in quarto.lua - only in .qmd files)
+			{ "<leader>Qp", desc = "Quarto Preview" },
+			{ "<leader>Qc", desc = "Close Quarto Preview" },
+			{ "<leader>Qh", desc = "Quarto Help" },
+			{ "<leader>Qr", desc = "Run current cell" },
+			{ "<leader>Qa", desc = "Run cell and above" },
+			{ "<leader>QA", desc = "Run all cells" },
+			{ "<leader>Ql", desc = "Run current line" },
+			{ "<leader>QR", desc = "Run all cells (all languages)" },
+			{ "<leader>Qs", desc = "Send to terminal" },
+			{ "<leader>QS", desc = "Send all to terminal" },
+			{ "<leader>Qi", desc = "Activate Quarto" },
+			{ "<leader>Qd", desc = "Quarto Diagnostics" },
 		})
 	end,
 }

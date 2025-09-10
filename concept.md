@@ -53,6 +53,8 @@ A minimal, purposeful Neovim configuration that embodies BONSAI principles:
 - **Tailwind CSS**: tailwindcss-language-server
 - **HTML/CSS**: Native LSP support
 - **Markdown**: markdownlint, markdown-preview
+- **D2 Diagrams**: terrastruct/d2-vim (diagram as code support)
+- **Quarto**: quarto-nvim with otter.nvim (scientific notebooks)
 
 ## Color Philosophy
 

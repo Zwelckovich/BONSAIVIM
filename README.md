@@ -910,6 +910,42 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 | `tic` | Insert table column |
 | `tir` | Insert table row |
 
+#### `<leader>T` - Typst (Document Typesetting)
+| Key | Description |
+|-----|-------------|
+| `Tp` | Typst Preview (browser) |
+| `Tt` | Toggle Typst Preview |
+| `Ts` | Stop Typst Preview |
+| `Tz` | Typst Preview in Zathura |
+| `Tj` | Jump to PDF in Zathura |
+| `Tc` | Compile Typst to PDF |
+| `Tw` | Typst watch mode |
+
+#### `<leader>D` - D2 Diagrams
+| Key | Description |
+|-----|-------------|
+| `Dc` | Compile D2 to SVG |
+| `Dw` | D2 watch mode (auto-compile) |
+| `Do` | Open D2 output in browser |
+| `Dp` | Export D2 to PNG |
+| `DP` | Export D2 to PDF |
+
+#### `<leader>Q` - Quarto (Scientific Notebooks)
+| Key | Description |
+|-----|-------------|
+| `Qp` | Quarto Preview |
+| `Qc` | Close Quarto Preview |
+| `Qh` | Quarto Help |
+| `Qr` | Run current cell |
+| `Qa` | Run cell and above |
+| `QA` | Run all cells |
+| `Ql` | Run current line |
+| `QR` | Run all cells (all languages) |
+| `Qs` | Send to terminal |
+| `QS` | Send all to terminal |
+| `Qi` | Activate Quarto |
+| `Qd` | Quarto Diagnostics |
+
 #### `<leader>s` - Search & Replace (Spectre)
 | Key | Description |
 |-----|-------------|
