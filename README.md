@@ -989,6 +989,130 @@ The configuration includes `vim.cmd([[filetype plugin indent on]])` in options.l
 - `r` = `[]` (square brackets)
 - `q` = `"'`` ` ``` (any quote type)
 
+## 📚 Best Practices Guide
+
+### Efficient Navigation
+
+**File Navigation**:
+- `<leader>ff` - Fuzzy find files quickly with Telescope
+- `<leader>fg` - Search text across all files (live grep)
+- `<leader>e` - Open Yazi file manager for visual browsing
+- Use Harpoon (`<leader>ha`) to mark frequently used files
+
+**Code Navigation**:
+- `s` + 2 chars - Jump anywhere with Flash (replaces traditional search)
+- `gd` - Go to definition (LSP)
+- `gr` - Find references (LSP)
+- `[[` / `]]` - Navigate between classes/functions (Treesitter)
+
+### Productive Editing
+
+**Text Manipulation**:
+- `ys` + motion + surround - Add surroundings (e.g., `ysiw"` to quote word)
+- `cs` + old + new - Change surroundings (e.g., `cs"'` to change quotes)
+- `ds` + surround - Delete surroundings
+- `<leader>/` - Toggle comments intelligently
+
+**Snippets & Completion**:
+- `Tab` - Expand snippets and navigate placeholders
+- `Ctrl+Space` - Trigger completion manually
+- `Ctrl+n/p` - Navigate completion menu
+- Type abbreviations naturally - LuaSnip handles expansion
+
+### Git Workflow
+
+**Version Control**:
+- `<leader>gg` - Open LazyGit for visual Git operations
+- `[c` / `]c` - Navigate Git hunks
+- `<leader>ghp` - Preview hunk changes
+- `<leader>ghs` - Stage hunk
+- `<leader>ghr` - Reset hunk
+
+**Conflict Resolution**:
+- Use LazyGit's conflict resolution interface
+- Navigate conflicts with `[c` / `]c`
+- Accept changes with visual selection
+
+### Session Management
+
+**Workspace Persistence**:
+- Sessions auto-save when exiting Neovim
+- Auto-restore last session when opening Neovim without files
+- `<leader>ps` - Select and restore any session
+- `<leader>pd` - Delete old sessions
+
+### Window & Buffer Management
+
+**Efficient Layouts**:
+- `<C-h/j/k/l>` - Navigate between windows
+- `<leader>sv` - Split vertically
+- `<leader>sh` - Split horizontally
+- `<Tab>` / `<S-Tab>` - Cycle through buffers
+- `<leader>x` - Close current buffer
+
+### Code Quality
+
+**Formatting & Linting**:
+- `<leader>cf` - Format current buffer (auto-detects formatter)
+- Formatting happens automatically on save (when configured)
+- View diagnostics with `<leader>cd`
+- Navigate diagnostics with `[d` / `]d`
+
+### Performance Tips
+
+**Keep it Fast**:
+1. **Lazy Loading**: Plugins load only when needed - don't disable this
+2. **Minimal Statusline**: Lualine configured for performance
+3. **Smart Treesitter**: Only essential parsers installed
+4. **Efficient Telescope**: Use specific pickers rather than generic search
+
+### Customization Guidelines
+
+**Adding Plugins**:
+1. Create a new file in `lua/plugins/` (one plugin per file)
+2. Use lazy loading with appropriate events
+3. Test with the included test suite
+4. Ensure <50ms startup time impact
+
+**Personal Keymaps**:
+1. Add to `lua/config/keymaps.lua`
+2. Use `<leader>` for custom mappings
+3. Document with which-key descriptions
+4. Avoid overriding vim defaults
+
+### Troubleshooting
+
+**Common Issues**:
+- **Slow Startup**: Run `:Lazy profile` to identify slow plugins
+- **LSP Not Working**: Check `:Mason` and install servers
+- **Formatting Issues**: Verify formatters with `:ConformInfo`
+- **Missing Icons**: Ensure Nerd Font is installed
+
+**Debug Commands**:
+- `:checkhealth` - System diagnostics
+- `:Lazy` - Plugin management interface
+- `:Mason` - LSP server management
+- `:messages` - View Neovim messages
+
+### Daily Workflow Example
+
+**Morning Routine**:
+1. Open Neovim (session auto-restores)
+2. `<leader>ff` to find today's files
+3. `<leader>ha` to mark important files with Harpoon
+4. `<leader>ut` for focused Zen Mode when needed
+
+**Development Flow**:
+1. Navigate with Flash (`s`) for precision jumps
+2. Use `gd` / `gr` for code exploration
+3. `<leader>cf` to format before commits
+4. `<leader>gg` for Git operations
+
+**End of Day**:
+1. `<leader>gg` to review and commit changes
+2. Close Neovim (session auto-saves)
+3. Sessions persist your exact workspace state
+
 ## 🌱 Living with BONSAI
 
 This configuration embodies the BONSAI philosophy:
